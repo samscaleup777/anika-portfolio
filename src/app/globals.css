@@ -560,3 +560,16 @@ html[data-time="day"] .social-link{background:linear-gradient(135deg,var(--panel
 @media(max-width:650px){.contact-card-expanded{padding:24px 18px;gap:28px}.contact-card-expanded h2{font-size:clamp(42px,10vw,58px)}.contact-card-expanded .contact-copy{font-size:15px}.social-panel-heading{flex-direction:column}.social-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.social-link{min-height:78px;padding:11px;gap:9px}.social-link>svg,.social-icon{flex-basis:33px;width:33px;height:33px;padding:7px}.social-copy strong{font-size:13px}.social-copy small{font-size:10px}}
 @media(max-width:380px){.social-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.social-link,.social-link:before{transition:none!important}.social-link:hover{transform:none}}
+
+
+/* User-provided AS monogram — site header, footer and browser branding */
+.site-header .brand-logo-mark,.footer-inner .brand-logo-mark{
+  width:48px;height:48px;flex:0 0 48px;min-width:48px;min-height:48px;
+  overflow:hidden;display:grid;place-items:center;padding:0;
+  background:#11151c;border:1px solid #ffffff2a;border-radius:10px;
+  box-shadow:0 5px 18px #0004;
+}
+.brand-logo-mark img{display:block;width:100%;height:100%;object-fit:cover;border-radius:inherit}
+@media(max-width:650px){
+  .site-header .brand-logo-mark,.footer-inner .brand-logo-mark{width:42px;height:42px;flex-basis:42px;min-width:42px;min-height:42px}
+}
