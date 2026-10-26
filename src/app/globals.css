@@ -194,3 +194,10 @@ html[data-period="night"] { --lime: #9fe8ff; --violet: #a6a3ff; }
   .tech-marquee-track { animation-duration: 34s; }
   .project-card, .project-card:hover { transform: none !important; }
 }
+
+/* Keep the headline's original emphasis after each line is wrapped for motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-copy h1 > .hero-line { color: inherit; }
+  .hero-copy h1 > .hero-line.hero-line-accent,
+  .hero-copy h1 > .hero-line > span { color: var(--lime); }
+}
