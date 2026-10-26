@@ -338,3 +338,24 @@ html[data-time="day"] .site-footer{color:var(--muted);border-color:var(--line)}
 @media(prefers-reduced-motion:reduce){
   body,body:before,body:after,h1,h2,h3,.brand,.main-nav,.button,.site-header,.project-card,.skill-card,.tech-stack-item,.live-weather,.education-card,.resume-card,.contact-card,.process-grid article,.value-list>div,.site-footer{transition:none!important}
 }
+
+
+/* Blend time-of-day accents with the active season and observed weather. */
+html[data-season="spring"]{--season-accent:#8dca89;--season-secondary:#a2a5ed}
+html[data-season="summer"]{--season-accent:#c4c65d;--season-secondary:#dfaa76}
+html[data-season="monsoon"]{--season-accent:#54b8c7;--season-secondary:#899ef2}
+html[data-season="autumn"]{--season-accent:#d99b61;--season-secondary:#cf8eb4}
+html[data-season="late-autumn"]{--season-accent:#d5a36d;--season-secondary:#d8a1b3}
+html[data-season="winter"]{--season-accent:#83c8e9;--season-secondary:#aaa6ef}
+html[data-season="tropical"]{--season-accent:#76c9a0;--season-secondary:#91a7e9}
+html[data-season="wet-tropical"]{--season-accent:#69c6d6;--season-secondary:#93a3f3}
+html[data-weather="clear"]{--weather-accent:#e9c75b}
+html[data-weather="cloudy"]{--weather-accent:#a2b4cf}
+html[data-weather="rain"]{--weather-accent:#5dcde4}
+html[data-weather="snow"]{--weather-accent:#9fd8f4}
+html[data-weather="storm"]{--weather-accent:#a7a1ff}
+html[data-weather="fog"]{--weather-accent:#b1bdcc}
+html[data-period="morning"]{--lime:color-mix(in srgb,var(--season-accent,#c4ff76) 78%,var(--weather-accent,#a9d79b) 22%);--violet:color-mix(in srgb,var(--season-secondary,#b49aff) 82%,#e5d8ac 18%)}
+html[data-period="afternoon"]{--lime:color-mix(in srgb,var(--season-accent,#c4ff76) 78%,var(--weather-accent,#e9c75b) 22%);--violet:color-mix(in srgb,var(--season-secondary,#b49aff) 86%,#f6d68a 14%)}
+html[data-period="evening"]{--lime:color-mix(in srgb,var(--season-accent,#c4ff76) 72%,#f0a166 28%);--violet:color-mix(in srgb,var(--season-secondary,#b49aff) 72%,#e39fc2 28%)}
+html[data-period="night"]{--lime:color-mix(in srgb,var(--season-accent,#c4ff76) 72%,var(--weather-accent,#8acffa) 28%);--violet:color-mix(in srgb,var(--season-secondary,#b49aff) 74%,#8e9df2 26%)}
