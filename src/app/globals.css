@@ -582,3 +582,24 @@ html[data-time="day"] .social-link{background:linear-gradient(135deg,var(--panel
   .site-header .brand-logo-mark{width:44px;height:44px;min-width:44px;min-height:44px;flex-basis:44px}
   .footer-inner .brand-logo-mark{width:40px;height:40px;min-width:40px;min-height:40px;flex-basis:40px}
 }
+
+
+/* Keep the navigation pinned while the main content scrolls.
+   The previous generic layer rule (.portfolio-root > header) accidentally
+   overrode the original .site-header sticky positioning. */
+.portfolio-root > .site-header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  width:100%;
+  isolation:isolate;
+  background:color-mix(in srgb,var(--bg) 88%,transparent);
+  border-bottom:1px solid var(--line);
+  -webkit-backdrop-filter:blur(20px);
+  backdrop-filter:blur(20px);
+}
+html{scroll-padding-top:108px}
+@media(max-width:650px){
+  .portfolio-root > .site-header{top:0;min-height:74px}
+  html{scroll-padding-top:86px}
+}
