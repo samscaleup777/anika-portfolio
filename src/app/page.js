@@ -17,7 +17,6 @@ export default function HomePage() {
       ".hero-foot, .live-weather-wrap, .section-heading, .project-card, .about-grid > div, .skill-card, .process-grid article, .education-card, .resume-card, .contact-card, .site-footer"
     ));
     let revealObserver = null;
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduceMotion || !("IntersectionObserver" in window)) {
       revealTargets.forEach((element) => element.classList.add("is-visible"));
     } else {
@@ -39,6 +38,112 @@ export default function HomePage() {
 
     const nav = root.querySelector(".main-nav");
     const menuToggle = root.querySelector(".menu-toggle");
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+    // Give each line of the hero headline its own staggered entrance.
+    const heroHeading = root.querySelector(".hero-copy h1");
+    if (heroHeading && !heroHeading.dataset.motionLines) {
+      const lines = [];
+      let currentLine = [];
+      while (heroHeading.firstChild) {
+        const node = heroHeading.firstChild;
+        heroHeading.removeChild(node);
+        if (node.nodeName === "BR") {
+          lines.push(currentLine);
+          currentLine = [];
+        } else {
+          currentLine.push(node);
+        }
+      }
+      lines.push(currentLine);
+      heroHeading.replaceChildren(...lines.map((nodes, index) => {
+        const line = document.createElement("span");
+        line.className = "hero-line";
+        line.style.setProperty("--line-index", String(index));
+        nodes.forEach((node) => line.appendChild(node));
+        return line;
+      }));
+      heroHeading.dataset.motionLines = "true";
+    }
+
+    // Turn the existing tool pills into a seamless, duplicated ticker.
+    const stackRow = root.querySelector(".stack-strip > div");
+    if (stackRow && !reduceMotion && !stackRow.classList.contains("tech-marquee-viewport")) {
+      const items = Array.from(stackRow.children);
+      if (items.length) {
+        const track = document.createElement("div");
+        track.className = "tech-marquee-track";
+        items.forEach((item) => track.appendChild(item));
+        items.forEach((item) => {
+          const duplicate = item.cloneNode(true);
+          duplicate.setAttribute("aria-hidden", "true");
+          track.appendChild(duplicate);
+        });
+        stackRow.classList.add("tech-marquee-viewport");
+        stackRow.replaceChildren(track);
+      }
+    }
+
+    // A tiny progress rail gives the long page a subtle sense of movement.
+    const progress = document.createElement("div");
+    progress.className = "motion-progress";
+    progress.setAttribute("aria-hidden", "true");
+    root.prepend(progress);
+    const updateProgress = () => {
+      const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = scrollable > 0 ? Math.min(1, Math.max(0, window.scrollY / scrollable)) : 0;
+      progress.style.transform = `scaleX(${ratio})`;
+    };
+    updateProgress();
+    window.addEventListener("scroll", updateProgress, { passive: true });
+    window.addEventListener("resize", updateProgress);
+
+    // Desktop pointer light and gentle magnetic motion; no extra work on touch devices.
+    const handlePointerMove = (event) => {
+      document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+      document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+    };
+    if (finePointer && !reduceMotion) root.addEventListener("pointermove", handlePointerMove, { passive: true });
+
+    const tiltCards = [];
+    const magneticButtons = [];
+    if (finePointer && !reduceMotion) {
+      root.querySelectorAll(".project-card").forEach((card) => {
+        const onMove = (event) => {
+          const rect = card.getBoundingClientRect();
+          const x = (event.clientX - rect.left) / rect.width;
+          const y = (event.clientY - rect.top) / rect.height;
+          card.style.setProperty("--card-tilt-x", `${(x - .5) * 7}deg`);
+          card.style.setProperty("--card-tilt-y", `${(.5 - y) * 7}deg`);
+          card.style.setProperty("--card-light-x", `${x * 100}%`);
+          card.style.setProperty("--card-light-y", `${y * 100}%`);
+        };
+        const onLeave = () => {
+          card.style.setProperty("--card-tilt-x", "0deg");
+          card.style.setProperty("--card-tilt-y", "0deg");
+          card.style.setProperty("--card-light-x", "50%");
+          card.style.setProperty("--card-light-y", "50%");
+        };
+        card.addEventListener("pointermove", onMove, { passive: true });
+        card.addEventListener("pointerleave", onLeave);
+        tiltCards.push([card, onMove, onLeave]);
+      });
+      root.querySelectorAll(".button").forEach((button) => {
+        const onMove = (event) => {
+          const rect = button.getBoundingClientRect();
+          button.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .12}px`);
+          button.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .12}px`);
+        };
+        const onLeave = () => {
+          button.style.setProperty("--magnet-x", "0px");
+          button.style.setProperty("--magnet-y", "0px");
+        };
+        button.addEventListener("pointermove", onMove, { passive: true });
+        button.addEventListener("pointerleave", onLeave);
+        magneticButtons.push([button, onMove, onLeave]);
+      });
+    }
     const closeMenu = () => {
       nav?.classList.remove("open");
       menuToggle?.setAttribute("aria-expanded", "false");
@@ -157,6 +262,18 @@ export default function HomePage() {
     return () => {
       alive = false;
       revealObserver?.disconnect();
+      window.removeEventListener("scroll", updateProgress);
+      window.removeEventListener("resize", updateProgress);
+      if (finePointer && !reduceMotion) root.removeEventListener("pointermove", handlePointerMove);
+      tiltCards.forEach(([card, onMove, onLeave]) => {
+        card.removeEventListener("pointermove", onMove);
+        card.removeEventListener("pointerleave", onLeave);
+      });
+      magneticButtons.forEach(([button, onMove, onLeave]) => {
+        button.removeEventListener("pointermove", onMove);
+        button.removeEventListener("pointerleave", onLeave);
+      });
+      progress.remove();
       menuToggle?.removeEventListener("click", toggleMenu);
       nav?.querySelectorAll("a").forEach((link) => link.removeEventListener("click", closeMenu));
       filterHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
