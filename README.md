@@ -1,13 +1,12 @@
 # Anika Portfolio
 
-A responsive Next.js portfolio with the original dark, lime and violet visual direction, a highlighted **Let's Talk** navigation CTA, project filters, a live local-time clock, IP-based approximate location, live weather, and visitor-time theme changes.
+A responsive Next.js portfolio that preserves the dark, lime and violet design, with a highlighted **Let's Talk** navigation CTA, project filters, IP-based approximate location, local time, live weather, and a time-based accent palette.
 
 ## Stack
-- Next.js App Router
-- React
+- Next.js App Router and React
 - CSS
-- IP geolocation: ipwho.is (approximate location; VPN/proxy can affect results)
-- Weather: Open-Meteo (no API key required for this client-side request)
+- IP geolocation: ipwho.is (approximate; VPNs/proxies may affect location)
+- Weather data: Open-Meteo
 
 ## Run locally
 ```bash
@@ -15,14 +14,15 @@ npm install
 npm run dev
 ```
 
-## Build
+## Production build
 ```bash
 npm run build
 npm start
 ```
 
-## Live deployment
-- Portfolio: https://anika-portfolio-hk777.vercel.app
-- Repository: https://github.com/samscaleup777/anika-portfolio
+## Links
+- **GitHub source:** https://github.com/samscaleup777/anika-portfolio
+- **Git-connected deployment (auto deploys from `main`):** https://anika-portfolio-github-hk777.vercel.app
+- **Original live URL (kept unchanged):** https://anika-portfolio-hk777.vercel.app
 
-The clock and theme update locally; weather is refreshed about every 15 minutes while the page is open. Location/weather services may occasionally be unavailable, in which case a fallback message is shown. A hosted website cannot guarantee 100% uptime across external APIs and hosting providers.
+Weather refreshes about every 15 minutes while the page is open, and local time/theme update automatically. External APIs or hosting may occasionally be unavailable; the page shows a fallback message and cannot promise 100% uptime.
