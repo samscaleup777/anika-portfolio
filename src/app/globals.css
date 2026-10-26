@@ -82,3 +82,115 @@ html[data-period="night"] { --lime: #9fe8ff; --violet: #a6a3ff; }
   .project-card, .skill-card, .value-list > div, .process-grid article,
   .education-card, .resume-card, .button, .main-nav > a, .brand-mark { transition: none !important; }
 }
+
+
+/* Signature motion pass: kinetic type, ambient light, tactile cards and a seamless stack ticker. */
+@media (prefers-reduced-motion: no-preference) {
+  body:before {
+    background:
+      radial-gradient(460px circle at var(--pointer-x, 50%) var(--pointer-y, 18%), #c4ff7610, transparent 72%),
+      radial-gradient(at 12% 15%, #5a469b26, transparent 36%),
+      radial-gradient(at 85% 10%, #60958a1a, transparent 35%),
+      #090b12;
+    transition: background .18s ease;
+  }
+
+  .hero-copy h1 { animation: none; }
+  .hero-copy h1 > .hero-line {
+    display: block;
+    color: inherit;
+    animation: title-line-rise .92s cubic-bezier(.18,.72,.18,1) both;
+    animation-delay: calc(.13s + var(--line-index, 0) * .13s);
+    will-change: transform, opacity, filter;
+  }
+  .hero-copy h1 > .hero-line > span { color: var(--lime); }
+
+  .stack-strip > .tech-marquee-viewport {
+    display: block;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    position: relative;
+    padding: 2px 0 6px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+  }
+  .tech-marquee-track {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 7px;
+    animation: tech-marquee 28s linear infinite;
+  }
+  .tech-marquee-track > span { flex: 0 0 auto; }
+  .tech-marquee-viewport:hover .tech-marquee-track { animation-play-state: paused; }
+
+  .motion-progress {
+    height: 2px;
+    width: 100%;
+    position: fixed;
+    inset: 0 auto auto 0;
+    z-index: 100;
+    transform: scaleX(0);
+    transform-origin: left center;
+    background: linear-gradient(90deg, var(--lime), var(--violet), #9fe8ff);
+    box-shadow: 0 0 14px #c4ff7640;
+    pointer-events: none;
+  }
+
+  .project-card {
+    --card-tilt-x: 0deg;
+    --card-tilt-y: 0deg;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: perspective(1000px) rotateX(var(--card-tilt-y)) rotateY(var(--card-tilt-x));
+    isolation: isolate;
+  }
+  .project-card:before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0;
+    background: radial-gradient(250px circle at var(--card-light-x, 50%) var(--card-light-y, 50%), #c4ff7619, transparent 74%);
+    transition: opacity .35s ease;
+  }
+  .project-card > .project-art,
+  .project-card > .project-info { z-index: 1; }
+  .project-card:hover:before { opacity: 1; }
+  .project-card:hover {
+    transform: perspective(1000px) rotateX(var(--card-tilt-y)) rotateY(var(--card-tilt-x)) translateY(-7px);
+  }
+  .project-art, .project-info { transform: translateZ(8px); }
+
+  .button:hover {
+    transform: translate(var(--magnet-x, 0px), calc(-2px + var(--magnet-y, 0px)));
+  }
+  .live-weather {
+    transition: border-color .3s ease, background .3s ease, transform .35s cubic-bezier(.2,.8,.2,1);
+  }
+  .live-weather:hover { border-color: #c4ff763b; transform: translateY(-3px); }
+}
+
+@keyframes title-line-rise {
+  from { opacity: 0; transform: translateY(48px); filter: blur(9px); }
+  to { opacity: 1; transform: translateY(0); filter: blur(0); }
+}
+@keyframes tech-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-copy h1 > .hero-line { animation: none !important; opacity: 1 !important; transform: none !important; filter: none !important; }
+  .motion-progress { display: none !important; }
+  .tech-marquee-viewport { overflow: visible !important; mask-image: none !important; -webkit-mask-image: none !important; }
+  .tech-marquee-track { animation: none !important; flex-wrap: wrap; width: auto; }
+  .project-card, .project-card:hover, .live-weather, .live-weather:hover, .button:hover { transform: none !important; }
+  .project-card:before { display: none !important; }
+}
+@media (max-width: 650px) {
+  .tech-marquee-track { animation-duration: 34s; }
+  .project-card, .project-card:hover { transform: none !important; }
+}
