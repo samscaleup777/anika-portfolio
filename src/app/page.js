@@ -59,7 +59,8 @@ export default function HomePage() {
       lines.push(currentLine);
       heroHeading.replaceChildren(...lines.map((nodes, index) => {
         const line = document.createElement("span");
-        line.className = "hero-line";
+        const accentLine = nodes.some((node) => node.nodeType === 1 && node.tagName === "SPAN");
+        line.className = accentLine ? "hero-line hero-line-accent" : "hero-line";
         line.style.setProperty("--line-index", String(index));
         nodes.forEach((node) => line.appendChild(node));
         return line;
