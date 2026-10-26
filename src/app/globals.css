@@ -232,3 +232,109 @@ html[data-period="night"] { --lime: #9fe8ff; --violet: #a6a3ff; }
 @media(max-width:760px){.tech-stack-heading{grid-template-columns:1fr;gap:17px}.tech-stack-heading .section-intro{max-width:560px}.tech-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tech-stack-focus{align-items:flex-start;flex-direction:column;gap:12px}}
 @media(max-width:480px){.tech-stack-grid{grid-template-columns:1fr}.tech-stack-item{min-height:94px;padding:15px}.tech-stack-heading h2{font-size:clamp(42px,12vw,58px)}.tech-stack-focus>div{gap:7px}.tech-stack-focus>div span{font-size:9px}}
 @media(prefers-reduced-motion:reduce){.tech-stack-item,.tech-stack-item:before{transition:none!important}.tech-stack-item:hover{transform:none}}
+
+
+/* Global visitor-adaptive theme: time of day, local weather and regional season */
+:root{
+  --theme-font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --theme-display-font:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --scene-base:#090b12;
+  --season-glow:#5a469b22;
+  --grid-line:#ffffff09;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--theme-font);
+  transition:background-color 1s ease,color .8s ease;
+}
+body:before{
+  background:
+    radial-gradient(at 13% 12%,var(--weather-glow, #5a469b25),transparent 36%),
+    radial-gradient(at 87% 15%,var(--season-glow),transparent 38%),
+    var(--scene-base);
+  transition:background 1.2s ease;
+}
+body:after{
+  background-image:linear-gradient(var(--grid-line) 1px,transparent 1px),linear-gradient(90deg,var(--grid-line) 1px,transparent 1px);
+  transition:background-image .8s ease,opacity .8s ease;
+}
+h1,h2,h3,.brand,.main-nav,.button,.kicker,.eyebrow,.tech-stack-overline{
+  font-family:var(--theme-display-font);
+  transition:color .75s ease;
+}
+html[data-time="day"]{
+  color-scheme:light;
+  --bg:#eff3ed;
+  --panel:#fbfdf8;
+  --panel2:#e7eee8;
+  --line:#23382c28;
+  --text:#1b2b25;
+  --muted:#52665c;
+  --subtle:#738278;
+  --scene-base:#eef3ec;
+  --grid-line:#203a2d13;
+}
+html[data-time="night"]{
+  color-scheme:dark;
+  --bg:#080b12;
+  --panel:#111723;
+  --panel2:#151d2a;
+  --line:#e8eeff1c;
+  --text:#f2f4fa;
+  --muted:#a0a7bc;
+  --subtle:#717a92;
+  --scene-base:#070912;
+  --grid-line:#ffffff09;
+}
+html[data-season="spring"]{--lime:#8dca89;--violet:#a2a5ed;--season-glow:#88d9a92a;--theme-font:"Trebuchet MS",Inter,ui-sans-serif,sans-serif;--theme-display-font:"Trebuchet MS",Inter,ui-sans-serif,sans-serif}
+html[data-season="summer"]{--lime:#c4c65d;--violet:#dfaa76;--season-glow:#e4c05b2b;--theme-font:Arial,Helvetica,sans-serif;--theme-display-font:Arial,Helvetica,sans-serif}
+html[data-season="monsoon"]{--lime:#54b8c7;--violet:#899ef2;--season-glow:#3b9fc82f;--theme-font:"Segoe UI",Tahoma,sans-serif;--theme-display-font:"Segoe UI",Tahoma,sans-serif}
+html[data-season="autumn"]{--lime:#d99b61;--violet:#cf8eb4;--season-glow:#d1844b2b;--theme-font:Georgia,"Times New Roman",serif;--theme-display-font:Georgia,"Times New Roman",serif}
+html[data-season="late-autumn"]{--lime:#d5a36d;--violet:#d8a1b3;--season-glow:#b77c4b25;--theme-font:"Trebuchet MS",Inter,ui-sans-serif,sans-serif;--theme-display-font:Georgia,"Times New Roman",serif}
+html[data-season="winter"]{--lime:#83c8e9;--violet:#aaa6ef;--season-glow:#6ea9e32b;--theme-font:Inter,ui-sans-serif,system-ui,sans-serif;--theme-display-font:Inter,ui-sans-serif,system-ui,sans-serif}
+html[data-season="tropical"]{--lime:#76c9a0;--violet:#91a7e9;--season-glow:#51b98a2b;--theme-font:"Segoe UI",Tahoma,sans-serif;--theme-display-font:"Segoe UI",Tahoma,sans-serif}
+html[data-season="wet-tropical"]{--lime:#69c6d6;--violet:#93a3f3;--season-glow:#3f9fd32f;--theme-font:"Segoe UI",Tahoma,sans-serif;--theme-display-font:"Segoe UI",Tahoma,sans-serif}
+html[data-period="morning"]{--lime:#a4d28e;--violet:#a4c3ec}
+html[data-period="afternoon"]{--lime:#c4c76b;--violet:#b3a4ed}
+html[data-period="evening"]{--lime:#e2a66e;--violet:#e1a3cb}
+html[data-period="night"]{--lime:#83c8e9;--violet:#9e9ff0}
+html[data-weather="clear"]{--weather-glow:#d3b34a30;--weather-glow-two:#75c79d20}
+html[data-weather="cloudy"]{--weather-glow:#8095b52b;--weather-glow-two:#aab5c518}
+html[data-weather="rain"]{--weather-glow:#3f8bbd3a;--weather-glow-two:#42b5bb20}
+html[data-weather="snow"]{--weather-glow:#91bce33b;--weather-glow-two:#b8aff42a}
+html[data-weather="storm"]{--weather-glow:#5847a948;--weather-glow-two:#3e85be2d}
+html[data-weather="fog"]{--weather-glow:#a4b2c62b;--weather-glow-two:#d1d9e41c}
+
+/* Carry the theme through the complete page, not only the accent glow. */
+.site-header{background:color-mix(in srgb,var(--bg) 84%,transparent);border-color:var(--line);color:var(--text)}
+.site-header,.project-card,.skill-card,.tech-stack-item,.live-weather,.education-card,.resume-card,.contact-card,.process-grid article,.value-list>div{
+  border-color:var(--line);
+  color:var(--text);
+  transition:background-color .9s ease,border-color .9s ease,color .75s ease,box-shadow .3s ease,transform .3s ease;
+}
+.project-card,.skill-card,.tech-stack-item,.education-card,.live-weather,.resume-card,.contact-card,.process-grid article,.value-list>div{
+  background:linear-gradient(135deg,var(--panel),var(--panel2));
+}
+.contact-card{background:radial-gradient(at 92% 5%,color-mix(in srgb,var(--violet) 12%,transparent),transparent 38%),linear-gradient(120deg,var(--panel),var(--panel2))}
+.hero-copy h1,.section h2,.about-grid h2,.process-section h2,.contact-card h2,.resume-card h2,.skill-card h3,.project-info h3,.process-grid h3,.education-details h3,.tech-stack-copy h3{color:var(--text)}
+.hero-text,.section-intro,.about-copy p,.project-info p,.skill-card p,.process-grid p,.education-details p,.resume-copy,.contact-copy,.tech-stack-copy p{color:var(--muted)}
+.stack-strip span,.skill-pills span,.project-stack span,.education-stack span,.tech-stack-focus>div span{
+  color:var(--muted);
+  border-color:var(--line);
+  background:color-mix(in srgb,var(--panel) 84%,transparent);
+}
+.tech-stack-grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+.tech-stack-item{background:linear-gradient(135deg,var(--panel),var(--panel2))}
+.icon-figma{color:#f58b67;background:#f58b6716;font-size:20px}
+.icon-motion{color:#9ea0ff;background:#9ea0ff16;font-size:20px}
+.tech-stack-item:hover{border-color:color-mix(in srgb,var(--lime) 75%,transparent);background:linear-gradient(135deg,var(--panel2),var(--panel))}
+html[data-time="day"] .secondary{color:var(--text);border-color:var(--line);background:color-mix(in srgb,var(--panel) 65%,transparent)}
+html[data-time="day"] .project-info .tag-row span{color:var(--muted);border-color:var(--line)}
+html[data-time="day"] .site-footer{color:var(--muted);border-color:var(--line)}
+.site-footer{transition:color .8s ease,border-color .8s ease}
+@media(max-width:900px){.tech-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.tech-stack-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){
+  body,body:before,body:after,h1,h2,h3,.brand,.main-nav,.button,.site-header,.project-card,.skill-card,.tech-stack-item,.live-weather,.education-card,.resume-card,.contact-card,.process-grid article,.value-list>div,.site-footer{transition:none!important}
+}
