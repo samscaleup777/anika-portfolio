@@ -5,21 +5,21 @@ export const metadata = {
   title: "Anika — Frontend Developer",
   description: "Thoughtful interfaces. Modern web experiences with JavaScript, React, Next.js and Tailwind CSS.",
   icons: {
-    icon: [{ url: "/as-mark.webp", type: "image/webp" }],
-    shortcut: [{ url: "/as-mark.webp", type: "image/webp" }],
-    apple: [{ url: "/as-mark.webp", type: "image/webp" }]
+    icon: [{ url: "/as-mark-31b3d8.webp", type: "image/webp" }],
+    shortcut: [{ url: "/as-mark-31b3d8.webp", type: "image/webp" }],
+    apple: [{ url: "/as-mark-31b3d8.webp", type: "image/webp" }]
   },
   openGraph: {
     title: "Anika — Frontend Developer",
     description: "Thoughtful interfaces. Modern web experiences.",
     type: "website",
-    images: [{ url: "/as-logo.webp", width: 240, height: 240, alt: "AS monogram logo on a charcoal background" }]
+    images: [{ url: "/as-logo-31b3d8.webp", width: 240, height: 240, alt: "AS monogram logo on a charcoal background" }]
   },
   twitter: {
     card: "summary_large_image",
     title: "Anika — Frontend Developer",
     description: "Thoughtful interfaces. Modern web experiences.",
-    images: ["/as-logo.webp"]
+    images: ["/as-logo-31b3d8.webp"]
   },
   other: { "theme-color": "#101319" }
 };
