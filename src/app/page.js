@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 
-const portfolioMarkup = "<div class=\"portfolio-root\"><header class=\"site-header\"><a class=\"brand\" href=\"#top\" aria-label=\"Anika home\"><span class=\"brand-mark\">a.</span><span><b>Anika</b><small>FRONTEND DEVELOPER</small></span></a><button class=\"menu-toggle\" aria-expanded=\"false\" aria-label=\"Toggle menu\">Menu ☰</button><nav class=\"main-nav\" aria-label=\"Main navigation\"><a href=\"#top\">Home</a><a href=\"#about\">About</a><a href=\"#stack\">Skills</a><a href=\"#work\">Projects</a><a href=\"#education\">Education</a><a href=\"#resume\">Resume</a><a class=\"nav-cta\" href=\"#lets-talk\">Let’s Talk <span aria-hidden=\"true\">↗</span></a></nav></header><main id=\"top\"><section class=\"hero-section\"><div class=\"container hero-grid\"><div class=\"hero-copy\"><p class=\"kicker\"><span class=\"line\"></span> FRONTEND DEVELOPER <span class=\"lime\">✳</span> REACT &amp; NEXT.JS</p><h1>Thoughtful<br/>interfaces.<br/><span>Modern web</span><br/>experiences.</h1><p class=\"hero-text\">Hi, I’m Anika — I build responsive, accessible and carefully considered web experiences with JavaScript, React, Next.js and Tailwind CSS.</p><div class=\"actions\"><a class=\"button primary\" href=\"#work\">Explore my work <span aria-hidden=\"true\">↗</span></a><a class=\"button secondary\" href=\"#lets-talk\">Let’s Talk <span>↘</span></a></div><div class=\"stack-strip\"><small>MY EVERYDAY TOOLS</small><div><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>React.js</span><span>Next.js</span><span>Figma</span><span>Motion</span></div></div></div><div class=\"hero-art\" aria-label=\"Decorative illustration of a website interface\"><div class=\"orbit orbit-a\"></div><div class=\"orbit orbit-b\"></div><span class=\"spark spark-a\">✳</span><span class=\"spark spark-b\">✦</span><div class=\"interface-window\"><div class=\"window-bar\"><span class=\"dots\">● ● ●</span><span>anika / web experience</span><span>•••</span></div><div class=\"window-body\"><aside><b>a.</b><i></i><i></i><i></i><i></i></aside><div class=\"window-content\"><small>YOUR NEXT IDEA, BEAUTIFULLY BUILT.</small><h2>Good design<br/>makes things <em>clear.</em></h2><div class=\"mini-line\"></div><div class=\"mini-cards\"><div><b>↗</b><i></i><i></i></div><div><b>✳</b><i></i><i></i></div></div><div class=\"mini-footer\"><span></span><span></span><span></span></div></div></div></div><div class=\"code-card\"><div><i></i><i></i><i></i><small>interface.js</small></div><pre><span>const</span> craft = <!-- -->{<br/>  responsive: <b>true</b>,<br/>  accessible: <b>true</b>,<br/>  details: <em>&quot;thoughtful&quot;</em><br/>}<!-- -->;</pre></div><div class=\"art-label\"><i></i> BUILT WITH INTENTION</div></div></div><div class=\"container hero-foot\"><span>DESIGN-MINDED DEVELOPMENT</span><span>✳   BUILT FOR PEOPLE, NOT JUST PIXELS   ✳</span><a href=\"#work\">SCROLL TO EXPLORE ↓</a></div><div class=\"container live-weather-wrap\"><div class=\"live-weather\" id=\"live-weather\" aria-live=\"polite\"><div class=\"weather-glyph\" id=\"weather-glyph\" aria-hidden=\"true\">◌</div><div class=\"weather-copy\"><span class=\"weather-eyebrow\"><i></i> LIVE LOCAL CONDITIONS</span><strong id=\"weather-main\">Checking your local weather…</strong><small id=\"weather-place\">Using approximate IP location and local time zone</small></div><div class=\"weather-temperature\"><strong id=\"weather-temp\">--°</strong><small id=\"weather-feels\">CURRENT</small></div><div class=\"weather-clock\"><small>LOCAL TIME</small><strong id=\"local-clock\">--:--</strong><span id=\"local-timezone\">Detecting time zone</span></div></div><p class=\"weather-source\">Weather data by <a href=\"https://open-meteo.com/\" target=\"_blank\" rel=\"noreferrer\">Open-Meteo</a> · Theme adapts to approximate IP location</p></div></section><section class=\"section work-section\" id=\"work\"><div class=\"container\"><div class=\"section-heading\"><div><p class=\"eyebrow\">01 / SELECTED WORK</p><h2>Projects with <span>purpose.</span></h2></div><p class=\"section-intro\">A selection of starter concepts showing the kinds of digital experiences I enjoy building. Replace them with your real projects before publishing.</p></div><div class=\"filters\" aria-label=\"Filter projects\"><button class=\"filter active\">All</button><button class=\"filter\">Dashboard</button><button class=\"filter\">E-commerce</button><button class=\"filter\">Website</button></div><div class=\"project-grid\"><article class=\"project-card\"><div class=\"project-art lavender\"><div class=\"mock-browser\"><div class=\"mock-top\"><span>● ● ●</span><small>analytics-dashboard<!-- -->.app</small><b>↗</b></div><div class=\"mock-inner\"><div class=\"mock-kicker\">A THOUGHTFUL DIGITAL EXPERIENCE</div><h3>Make data<br/>feel <em>clear.</em></h3><div class=\"mock-blocks\"><span></span><span></span><span></span></div><div class=\"mock-cta\"></div></div></div><span class=\"project-number\">01<!-- --> / CONCEPT</span></div><div class=\"project-info\"><div class=\"tag-row\"><span>Dashboard</span><span>UI CONCEPT</span></div><h3>Analytics Dashboard</h3><p>A considered dashboard UI concept with readable metrics, activity summaries and a clear visual hierarchy.</p><div class=\"project-stack\"><span>React</span><span>JavaScript</span><span>CSS</span></div></div></article><article class=\"project-card\"><div class=\"project-art peach\"><div class=\"mock-browser\"><div class=\"mock-top\"><span>● ● ●</span><small>e-commerce-storefront<!-- -->.app</small><b>↗</b></div><div class=\"mock-inner\"><div class=\"mock-kicker\">A THOUGHTFUL DIGITAL EXPERIENCE</div><h3>Objects for<br/>everyday <em>living.</em></h3><div class=\"mock-blocks\"><span></span><span></span><span></span></div><div class=\"mock-cta\"></div></div></div><span class=\"project-number\">02<!-- --> / CONCEPT</span></div><div class=\"project-info\"><div class=\"tag-row\"><span>E-commerce</span><span>UI CONCEPT</span></div><h3>E-commerce Storefront</h3><p>A product-first storefront concept designed around calm browsing, responsive cards and simple navigation.</p><div class=\"project-stack\"><span>Next.js</span><span>Tailwind CSS</span></div></div></article><article class=\"project-card\"><div class=\"project-art mint\"><div class=\"mock-browser\"><div class=\"mock-top\"><span>● ● ●</span><small>saas-landing-page<!-- -->.app</small><b>↗</b></div><div class=\"mock-inner\"><div class=\"mock-kicker\">A THOUGHTFUL DIGITAL EXPERIENCE</div><h3>A better way<br/>to <em>get things done.</em></h3><div class=\"mock-blocks\"><span></span><span></span><span></span></div><div class=\"mock-cta\"></div></div></div><span class=\"project-number\">03<!-- --> / CONCEPT</span></div><div class=\"project-info\"><div class=\"tag-row\"><span>Website</span><span>UI CONCEPT</span></div><h3>SaaS Landing Page</h3><p>A focused marketing page concept with strong content structure and a clear path to action.</p><div class=\"project-stack\"><span>Next.js</span><span>Tailwind CSS</span></div></div></article></div><p class=\"disclaimer\">Project cards are concept placeholders, not claims about completed client work. Add your live demos and source repositories here.</p></div></section><section class=\"section about-section\" id=\"about\"><div class=\"container about-grid\"><div><p class=\"eyebrow\">02 / A LITTLE ABOUT ME</p><h2>Useful first.<br/><span>Beautiful, too.</span></h2><div class=\"about-stamp\">DESIGNED WITH ✳ THE DETAILS IN MIND</div></div><div class=\"about-copy\"><p class=\"lead\">I believe the best interfaces make complicated things feel simple.</p><p>I’m Anika, a frontend developer interested in the place where thoughtful design and dependable code meet. I enjoy shaping clear layouts, building reusable UI and making sure an experience feels natural on every screen size.</p><p>My focus is on solid structure, responsive behaviour, accessible interactions and the small details that make a product feel considered.</p><div class=\"value-list\"><div><b>01</b><span><strong>Responsive by default</strong><small>Designed to work across screen sizes.</small></span></div><div><b>02</b><span><strong>Purposeful details</strong><small>Visual choices that support the message.</small></span></div><div><b>03</b><span><strong>Maintainable UI</strong><small>Reusable components and thoughtful structure.</small></span></div></div></div></div></section><section class=\"section skills-section\" id=\"stack\"><div class=\"container\"><p class=\"eyebrow\">03 / ENGINEERING TOOLKIT</p><div class=\"tech-stack-heading\"><div><span class=\"tech-stack-overline\">ENGINEERING / TOOLKIT</span><h2>My tech <span>stack.</span></h2></div><p class=\"section-intro\">A blend of design and frontend tools for shaping polished interfaces, responsive experiences and purposeful motion.</p></div><div class=\"tech-stack-grid\" role=\"list\" aria-label=\"My technology stack\"><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-html\" aria-hidden=\"true\">5</div><div class=\"tech-stack-copy\"><h3>HTML5</h3><p>Semantic structure</p></div><span class=\"tech-stack-index\">01</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-css\" aria-hidden=\"true\">#</div><div class=\"tech-stack-copy\"><h3>CSS3</h3><p>Visual styling</p></div><span class=\"tech-stack-index\">02</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-js\" aria-hidden=\"true\">JS</div><div class=\"tech-stack-copy\"><h3>JavaScript</h3><p>Interactive behaviour</p></div><span class=\"tech-stack-index\">03</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-tailwind\" aria-hidden=\"true\">TW</div><div class=\"tech-stack-copy\"><h3>Tailwind CSS</h3><p>Utility-first styling</p></div><span class=\"tech-stack-index\">04</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-react\" aria-hidden=\"true\">⚛</div><div class=\"tech-stack-copy\"><h3>React.js</h3><p>Reusable UI components</p></div><span class=\"tech-stack-index\">05</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-next\" aria-hidden=\"true\">N</div><div class=\"tech-stack-copy\"><h3>Next.js</h3><p>Modern web applications</p></div><span class=\"tech-stack-index\">06</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-figma\" aria-hidden=\"true\">F</div><div class=\"tech-stack-copy\"><h3>Figma</h3><p>UI design &amp; prototyping</p></div><span class=\"tech-stack-index\">07</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-motion\" aria-hidden=\"true\">M</div><div class=\"tech-stack-copy\"><h3>Motion</h3><p>UI animation &amp; transitions</p></div><span class=\"tech-stack-index\">08</span></article></div><div class=\"tech-stack-focus\"><span class=\"tech-stack-focus-label\">FOCUS AREAS</span><div><span>Frontend Development</span><span>Responsive UI</span><span>Reusable Components</span><span>Web Interactions</span></div></div></div></section><section class=\"process-section\"><div class=\"container\"><p class=\"eyebrow\">04 / HOW I WORK</p><h2>A good process leads to <span>better work.</span></h2><div class=\"process-grid\"><article><span>01</span><h3>Understand</h3><p>Clarify the goal, audience and essential user journey.</p></article><article><span>02</span><h3>Shape</h3><p>Create a clear structure and visual direction.</p></article><article><span>03</span><h3>Build</h3><p>Develop responsive components with care.</p></article><article><span>04</span><h3>Refine</h3><p>Review screen sizes, states and finishing details.</p></article></div></div></section><section class=\"section education-section\" id=\"education\"><div class=\"container\"><div class=\"section-heading\"><div><p class=\"eyebrow\">05 / EDUCATION</p><h2>Always learning.<br/><span>Always building.</span></h2></div><p class=\"section-intro\">My learning journey is built around hands-on projects, coding practice and a growing understanding of modern frontend development.</p></div><div class=\"education-card\"><div class=\"education-number\">01</div><div class=\"education-details\"><h3>Frontend Development</h3><p>Ongoing learning through practical work with HTML, CSS, JavaScript, Tailwind CSS, React.js and Next.js.</p><div class=\"education-stack\"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>React.js</span><span>Next.js</span></div></div><span class=\"education-status\">CONTINUOUS LEARNING</span></div><p class=\"education-note\">Formal education details can be added here once the institution, qualification and dates are confirmed.</p></div></section><section class=\"section resume-section\" id=\"resume\"><div class=\"container\"><div class=\"resume-card\"><div><p class=\"eyebrow\">06 / RESUME</p><h2>My background,<br/><span>at a glance.</span></h2><p class=\"resume-copy\">Looking for a quick overview of my skills and frontend journey? Get in touch to request my latest resume.</p></div><a class=\"button primary\" href=\"#lets-talk\">Request my resume <span aria-hidden=\"true\">↗</span></a></div></div></section><section class=\"contact-section\" id=\"lets-talk\"><div class=\"container\"><div class=\"contact-card\"><div><p class=\"eyebrow\">07 / LET’S TALK</p><h2>Have something<br/>good in <span>mind?</span></h2><p class=\"contact-copy\">Have a project in mind or looking for frontend help? Let’s start a conversation and turn the rough idea into a thoughtful web experience.</p><a class=\"button primary\" href=\"mailto:hello@example.com\">Let’s Talk <span aria-hidden=\"true\">↗</span></a><small class=\"placeholder-note\">Demo email — update to Anika’s real email before publishing.</small></div><div class=\"contact-art\"><div class=\"contact-ring ring-one\"></div><div class=\"contact-ring ring-two\"></div><div class=\"contact-orb\">a.</div><span>✳</span></div></div></div></section></main><footer class=\"site-footer\"><div class=\"container footer-inner\"><a class=\"brand\" href=\"#top\"><span class=\"brand-mark\">a.</span><span><b>Anika</b><small>FRONTEND DEVELOPER</small></span></a><p>Designed with intention. Built with care.</p><span>© <!-- -->2026<!-- --> Anika</span></div></footer></div>";
+const portfolioMarkup = "<div class=\"portfolio-root\"><canvas class=\"cursor-scene\" aria-hidden=\"true\"></canvas><header class=\"site-header\"><a class=\"brand\" href=\"#top\" aria-label=\"Anika home\"><span class=\"brand-mark\">a.</span><span><b>Anika</b><small>FRONTEND DEVELOPER</small></span></a><button class=\"menu-toggle\" aria-expanded=\"false\" aria-label=\"Toggle menu\">Menu ☰</button><nav class=\"main-nav\" aria-label=\"Main navigation\"><a href=\"#top\">Home</a><a href=\"#about\">About</a><a href=\"#stack\">Skills</a><a href=\"#work\">Projects</a><a href=\"#education\">Education</a><a href=\"#resume\">Resume</a><a class=\"nav-cta\" href=\"#lets-talk\">Let’s Talk <span aria-hidden=\"true\">↗</span></a></nav></header><main id=\"top\"><section class=\"hero-section\"><div class=\"container hero-grid\"><div class=\"hero-copy\"><p class=\"kicker\"><span class=\"line\"></span> FRONTEND DEVELOPER <span class=\"lime\">✳</span> REACT &amp; NEXT.JS</p><h1>Thoughtful<br/>interfaces.<br/><span>Modern web</span><br/>experiences.</h1><p class=\"hero-text\">Hi, I’m Anika — I build responsive, accessible and carefully considered web experiences with JavaScript, React, Next.js and Tailwind CSS.</p><div class=\"actions\"><a class=\"button primary\" href=\"#work\">Explore my work <span aria-hidden=\"true\">↗</span></a><a class=\"button secondary\" href=\"#lets-talk\">Let’s Talk <span>↘</span></a></div><div class=\"stack-strip\"><small>MY EVERYDAY TOOLS</small><div><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>React.js</span><span>Next.js</span><span>Figma</span><span>Motion</span></div></div></div><div class=\"hero-art\" aria-label=\"Decorative illustration of a website interface\"><div class=\"orbit orbit-a\"></div><div class=\"orbit orbit-b\"></div><span class=\"spark spark-a\">✳</span><span class=\"spark spark-b\">✦</span><div class=\"interface-window\"><div class=\"window-bar\"><span class=\"dots\">● ● ●</span><span>anika / web experience</span><span>•••</span></div><div class=\"window-body\"><aside><b>a.</b><i></i><i></i><i></i><i></i></aside><div class=\"window-content\"><small>YOUR NEXT IDEA, BEAUTIFULLY BUILT.</small><h2>Good design<br/>makes things <em>clear.</em></h2><div class=\"mini-line\"></div><div class=\"mini-cards\"><div><b>↗</b><i></i><i></i></div><div><b>✳</b><i></i><i></i></div></div><div class=\"mini-footer\"><span></span><span></span><span></span></div></div></div></div><div class=\"code-card\"><div><i></i><i></i><i></i><small>interface.js</small></div><pre><span>const</span> craft = <!-- -->{<br/>  responsive: <b>true</b>,<br/>  accessible: <b>true</b>,<br/>  details: <em>&quot;thoughtful&quot;</em><br/>}<!-- -->;</pre></div><div class=\"art-label\"><i></i> BUILT WITH INTENTION</div></div></div><div class=\"container hero-foot\"><span>DESIGN-MINDED DEVELOPMENT</span><span>✳   BUILT FOR PEOPLE, NOT JUST PIXELS   ✳</span><a href=\"#work\">SCROLL TO EXPLORE ↓</a></div><div class=\"container live-weather-wrap\"><div class=\"live-weather\" id=\"live-weather\" aria-live=\"polite\"><div class=\"weather-glyph\" id=\"weather-glyph\" aria-hidden=\"true\">◌</div><div class=\"weather-copy\"><span class=\"weather-eyebrow\"><i></i> LIVE LOCAL CONDITIONS</span><strong id=\"weather-main\">Checking your local weather…</strong><small id=\"weather-place\">Using approximate IP location and local time zone</small></div><div class=\"weather-temperature\"><strong id=\"weather-temp\">--°</strong><small id=\"weather-feels\">CURRENT</small></div><div class=\"weather-clock\"><small>LOCAL TIME</small><strong id=\"local-clock\">--:--</strong><span id=\"local-timezone\">Detecting time zone</span></div></div><p class=\"weather-source\">Weather data by <a href=\"https://open-meteo.com/\" target=\"_blank\" rel=\"noreferrer\">Open-Meteo</a> · Theme adapts to approximate IP location</p></div></section><section class=\"section work-section\" id=\"work\"><div class=\"container\"><div class=\"section-heading\"><div><p class=\"eyebrow\">01 / SELECTED WORK</p><h2>Projects with <span>purpose.</span></h2></div><p class=\"section-intro\">A selection of starter concepts showing the kinds of digital experiences I enjoy building. Replace them with your real projects before publishing.</p></div><div class=\"filters\" aria-label=\"Filter projects\"><button class=\"filter active\">All</button><button class=\"filter\">Content Platform</button><button class=\"filter\">Market Platform</button></div> <div class=\"project-grid\">   <article class=\"project-card\">     <div class=\"project-art lavender\">       <div class=\"mock-browser\">         <div class=\"mock-top\"><span>● ● ●</span><small>annika-website-one.vercel.app</small><b>↗</b></div>         <div class=\"mock-inner\">           <div class=\"mock-kicker\">A THOUGHTFUL SPACE FOR EVERY MUSLIMAH</div>           <h3>Faith in heart.<br/>Strength in <em>life.</em></h3>           <div class=\"mini-line\"></div><div class=\"mock-blocks\"><span></span><span></span><span></span></div><div class=\"mock-cta\"></div>         </div>       </div>       <span class=\"project-number\">01 / LIVE PROJECT</span>     </div>     <div class=\"project-info\">       <div class=\"tag-row\"><span>Content Platform</span><span>LIVE PROJECT</span></div>       <h3>Annïka — Faith &amp; Lifestyle</h3>       <p>A calm, multi-section platform for modest fashion, Quran and Hadith, practical safety guidance, lifestyle resources and articles.</p>       <div class=\"project-stack\"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>       <a class=\"project-live-link\" href=\"https://annika-website-one.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\">Explore live site <span aria-hidden=\"true\">↗</span></a>     </div>   </article>   <article class=\"project-card\">     <div class=\"project-art mint\">       <div class=\"mock-browser\">         <div class=\"mock-top\"><span>● ● ●</span><small>annika-hk777.vercel.app</small><b>↗</b></div>         <div class=\"mock-inner\">           <div class=\"mock-kicker\">BANGLADESH MARKET PRICE GUIDE</div>           <h3>Know the price.<br/>Choose <em>clearly.</em></h3>           <div class=\"mini-line\"></div><div class=\"mock-blocks\"><span></span><span></span><span></span></div><div class=\"mock-cta\"></div>         </div>       </div>       <span class=\"project-number\">02 / LIVE PROJECT</span>     </div>     <div class=\"project-info\">       <div class=\"tag-row\"><span>Market Platform</span><span>LIVE PROJECT</span></div>       <h3>Bazar Dor — Market Prices</h3>       <p>A Bengali-first platform for exploring everyday essentials and market prices across Bangladesh in one place.</p>       <div class=\"project-stack\"><span>Next.js</span><span>React</span><span>Tailwind CSS</span></div>       <a class=\"project-live-link\" href=\"https://annika-hk777.vercel.app/\" target=\"_blank\" rel=\"noopener noreferrer\">Explore live site <span aria-hidden=\"true\">↗</span></a>     </div>   </article> </div><p class=\"disclaimer\">Two live projects, built for real audiences. Open each site to explore the experience in context.</p></div></section><section class=\"section about-section\" id=\"about\"><div class=\"container about-grid\"><div><p class=\"eyebrow\">02 / A LITTLE ABOUT ME</p><h2>Useful first.<br/><span>Beautiful, too.</span></h2><div class=\"about-stamp\">DESIGNED WITH ✳ THE DETAILS IN MIND</div></div><div class=\"about-copy\"><p class=\"lead\">I believe the best interfaces make complicated things feel simple.</p><p>I’m Anika, a frontend developer interested in the place where thoughtful design and dependable code meet. I enjoy shaping clear layouts, building reusable UI and making sure an experience feels natural on every screen size.</p><p>My focus is on solid structure, responsive behaviour, accessible interactions and the small details that make a product feel considered.</p><div class=\"value-list\"><div><b>01</b><span><strong>Responsive by default</strong><small>Designed to work across screen sizes.</small></span></div><div><b>02</b><span><strong>Purposeful details</strong><small>Visual choices that support the message.</small></span></div><div><b>03</b><span><strong>Maintainable UI</strong><small>Reusable components and thoughtful structure.</small></span></div></div></div></div></section><section class=\"section skills-section\" id=\"stack\"><div class=\"container\"><p class=\"eyebrow\">03 / ENGINEERING TOOLKIT</p><div class=\"tech-stack-heading\"><div><span class=\"tech-stack-overline\">ENGINEERING / TOOLKIT</span><h2>My tech <span>stack.</span></h2></div><p class=\"section-intro\">A blend of design and frontend tools for shaping polished interfaces, responsive experiences and purposeful motion.</p></div><div class=\"tech-stack-grid\" role=\"list\" aria-label=\"My technology stack\"><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-html\" aria-hidden=\"true\">5</div><div class=\"tech-stack-copy\"><h3>HTML5</h3><p>Semantic structure</p></div><span class=\"tech-stack-index\">01</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-css\" aria-hidden=\"true\">#</div><div class=\"tech-stack-copy\"><h3>CSS3</h3><p>Visual styling</p></div><span class=\"tech-stack-index\">02</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-js\" aria-hidden=\"true\">JS</div><div class=\"tech-stack-copy\"><h3>JavaScript</h3><p>Interactive behaviour</p></div><span class=\"tech-stack-index\">03</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-tailwind\" aria-hidden=\"true\">TW</div><div class=\"tech-stack-copy\"><h3>Tailwind CSS</h3><p>Utility-first styling</p></div><span class=\"tech-stack-index\">04</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-react\" aria-hidden=\"true\">⚛</div><div class=\"tech-stack-copy\"><h3>React.js</h3><p>Reusable UI components</p></div><span class=\"tech-stack-index\">05</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-next\" aria-hidden=\"true\">N</div><div class=\"tech-stack-copy\"><h3>Next.js</h3><p>Modern web applications</p></div><span class=\"tech-stack-index\">06</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-figma\" aria-hidden=\"true\">F</div><div class=\"tech-stack-copy\"><h3>Figma</h3><p>UI design &amp; prototyping</p></div><span class=\"tech-stack-index\">07</span></article><article class=\"tech-stack-item\" role=\"listitem\"><div class=\"tech-stack-icon icon-motion\" aria-hidden=\"true\">M</div><div class=\"tech-stack-copy\"><h3>Motion</h3><p>UI animation &amp; transitions</p></div><span class=\"tech-stack-index\">08</span></article></div><div class=\"tech-stack-focus\"><span class=\"tech-stack-focus-label\">FOCUS AREAS</span><div><span>Frontend Development</span><span>Responsive UI</span><span>Reusable Components</span><span>Web Interactions</span></div></div></div></section><section class=\"process-section\"><div class=\"container\"><p class=\"eyebrow\">04 / HOW I WORK</p><h2>A good process leads to <span>better work.</span></h2><div class=\"process-grid\"><article><span>01</span><h3>Understand</h3><p>Clarify the goal, audience and essential user journey.</p></article><article><span>02</span><h3>Shape</h3><p>Create a clear structure and visual direction.</p></article><article><span>03</span><h3>Build</h3><p>Develop responsive components with care.</p></article><article><span>04</span><h3>Refine</h3><p>Review screen sizes, states and finishing details.</p></article></div></div></section><section class=\"section education-section\" id=\"education\"><div class=\"container\"><div class=\"section-heading\"><div><p class=\"eyebrow\">05 / EDUCATION</p><h2>Always learning.<br/><span>Always building.</span></h2></div><p class=\"section-intro\">My learning journey is built around hands-on projects, coding practice and a growing understanding of modern frontend development.</p></div><div class=\"education-card\"><div class=\"education-number\">01</div><div class=\"education-details\"><h3>Frontend Development</h3><p>Ongoing learning through practical work with HTML, CSS, JavaScript, Tailwind CSS, React.js and Next.js.</p><div class=\"education-stack\"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Tailwind CSS</span><span>React.js</span><span>Next.js</span></div></div><span class=\"education-status\">CONTINUOUS LEARNING</span></div><p class=\"education-note\">Formal education details can be added here once the institution, qualification and dates are confirmed.</p></div></section><section class=\"section resume-section\" id=\"resume\"><div class=\"container\"><div class=\"resume-card\"><div><p class=\"eyebrow\">06 / RESUME</p><h2>My background,<br/><span>at a glance.</span></h2><p class=\"resume-copy\">Looking for a quick overview of my skills and frontend journey? Get in touch to request my latest resume.</p></div><a class=\"button primary\" href=\"#lets-talk\">Request my resume <span aria-hidden=\"true\">↗</span></a></div></div></section><section class=\"contact-section\" id=\"lets-talk\"><div class=\"container\"><div class=\"contact-card\"><div><p class=\"eyebrow\">07 / LET’S TALK</p><h2>Have something<br/>good in <span>mind?</span></h2><p class=\"contact-copy\">Have a project in mind or looking for frontend help? Let’s start a conversation and turn the rough idea into a thoughtful web experience.</p><a class=\"button primary\" href=\"mailto:hello@example.com\">Let’s Talk <span aria-hidden=\"true\">↗</span></a><small class=\"placeholder-note\">Demo email — update to Anika’s real email before publishing.</small></div><div class=\"contact-art\"><div class=\"contact-ring ring-one\"></div><div class=\"contact-ring ring-two\"></div><div class=\"contact-orb\">a.</div><span>✳</span></div></div></div></section></main><footer class=\"site-footer\"><div class=\"container footer-inner\"><a class=\"brand\" href=\"#top\"><span class=\"brand-mark\">a.</span><span><b>Anika</b><small>FRONTEND DEVELOPER</small></span></a><p>Designed with intention. Built with care.</p><span>© <!-- -->2026<!-- --> Anika</span></div></footer></div>";
 
 export default function HomePage() {
   const mountRef = useRef(null);
@@ -13,6 +13,202 @@ export default function HomePage() {
     let alive = true;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const finePointer = window.matchMedia("(pointer: fine)").matches;
+
+    // Climate Constellation: a lightweight canvas field that shifts with local time,
+    // regional season and current weather, and gently responds to cursor movement.
+    const sceneCanvas = root.querySelector(".cursor-scene");
+    const sceneCtx = sceneCanvas?.getContext("2d", { alpha: true });
+    let sceneWidth = 0;
+    let sceneHeight = 0;
+    let sceneDpr = 1;
+    let sceneAnimationFrame = 0;
+    let sceneLastFrame = 0;
+    let sceneParticles = [];
+    const sceneRipples = [];
+    const sceneCursor = { x: -1000, y: -1000, drawX: -1000, drawY: -1000, active: false };
+    const scenePalette = { one: "#c4ff76", two: "#b49aff", three: "#54b8c7" };
+
+    const refreshScenePalette = () => {
+      const styles = window.getComputedStyle(document.documentElement);
+      scenePalette.one = styles.getPropertyValue("--cursor-one").trim() || styles.getPropertyValue("--lime").trim() || "#c4ff76";
+      scenePalette.two = styles.getPropertyValue("--cursor-two").trim() || styles.getPropertyValue("--violet").trim() || "#b49aff";
+      scenePalette.three = styles.getPropertyValue("--cursor-three").trim() || "#54b8c7";
+    };
+    refreshScenePalette();
+    const sceneThemeObserver = new MutationObserver(refreshScenePalette);
+    sceneThemeObserver.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["data-period", "data-time", "data-weather", "data-season", "data-climate"]
+    });
+
+    const resizeScene = () => {
+      if (!sceneCanvas || !sceneCtx) return;
+      sceneWidth = window.innerWidth;
+      sceneHeight = window.innerHeight;
+      sceneDpr = Math.min(window.devicePixelRatio || 1, 1.7);
+      sceneCanvas.width = Math.round(sceneWidth * sceneDpr);
+      sceneCanvas.height = Math.round(sceneHeight * sceneDpr);
+      sceneCanvas.style.width = sceneWidth + "px";
+      sceneCanvas.style.height = sceneHeight + "px";
+      sceneCtx.setTransform(sceneDpr, 0, 0, sceneDpr, 0, 0);
+      const desiredCount = reduceMotion ? 36 : Math.max(34, Math.min(86, Math.round(sceneWidth * sceneHeight / 19000)));
+      while (sceneParticles.length < desiredCount) {
+        sceneParticles.push({
+          x: Math.random() * sceneWidth,
+          y: Math.random() * sceneHeight,
+          vx: (Math.random() - .5) * .24,
+          vy: (Math.random() - .5) * .24,
+          size: Math.random() * 1.35 + .45,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+      sceneParticles.length = desiredCount;
+      sceneParticles.forEach((particle) => {
+        if (particle.x > sceneWidth) particle.x = Math.random() * sceneWidth;
+        if (particle.y > sceneHeight) particle.y = Math.random() * sceneHeight;
+      });
+    };
+
+    const handleScenePointerMove = (event) => {
+      if (!finePointer || event.pointerType === "touch") return;
+      sceneCursor.x = event.clientX;
+      sceneCursor.y = event.clientY;
+      sceneCursor.active = true;
+    };
+    const handleScenePointerOut = (event) => {
+      if (!event.relatedTarget) sceneCursor.active = false;
+    };
+    const handleScenePointerDown = (event) => {
+      if (!finePointer || event.pointerType === "touch") return;
+      sceneRipples.push({ x: event.clientX, y: event.clientY, age: 0, colorIndex: sceneRipples.length % 3 });
+      if (sceneRipples.length > 5) sceneRipples.shift();
+    };
+
+    const drawScene = (timestamp = 0) => {
+      if (!sceneCtx || !sceneCanvas || !alive) return;
+      if (document.visibilityState === "hidden") {
+        if (!reduceMotion) sceneAnimationFrame = window.requestAnimationFrame(drawScene);
+        return;
+      }
+      const delta = sceneLastFrame ? Math.min(2, (timestamp - sceneLastFrame) / 16.67) : 1;
+      sceneLastFrame = timestamp;
+      const ctx = sceneCtx;
+      const now = timestamp * .001;
+      ctx.clearRect(0, 0, sceneWidth, sceneHeight);
+
+      if (sceneCursor.active && finePointer && !reduceMotion) {
+        sceneCursor.drawX += (sceneCursor.x - sceneCursor.drawX) * .16;
+        sceneCursor.drawY += (sceneCursor.y - sceneCursor.drawY) * .16;
+        const glow = ctx.createRadialGradient(sceneCursor.drawX, sceneCursor.drawY, 0, sceneCursor.drawX, sceneCursor.drawY, 230);
+        glow.addColorStop(0, scenePalette.one);
+        glow.addColorStop(.36, scenePalette.two);
+        glow.addColorStop(1, "transparent");
+        ctx.globalAlpha = document.documentElement.dataset.time === "day" ? .075 : .12;
+        ctx.fillStyle = glow;
+        ctx.fillRect(sceneCursor.drawX - 230, sceneCursor.drawY - 230, 460, 460);
+        ctx.globalAlpha = 1;
+      }
+
+      for (let i = 0; i < sceneParticles.length; i++) {
+        const particle = sceneParticles[i];
+        if (!reduceMotion) {
+          particle.x += particle.vx * delta;
+          particle.y += particle.vy * delta;
+          particle.phase += .008 * delta;
+          if (particle.x < -10) particle.x = sceneWidth + 10;
+          if (particle.x > sceneWidth + 10) particle.x = -10;
+          if (particle.y < -10) particle.y = sceneHeight + 10;
+          if (particle.y > sceneHeight + 10) particle.y = -10;
+
+          if (sceneCursor.active && finePointer) {
+            const dx = particle.x - sceneCursor.drawX;
+            const dy = particle.y - sceneCursor.drawY;
+            const distance = Math.hypot(dx, dy);
+            if (distance > 1 && distance < 170) {
+              const force = (1 - distance / 170) * .18 * delta;
+              particle.vx += (dx / distance) * force - (dy / distance) * force * .17;
+              particle.vy += (dy / distance) * force + (dx / distance) * force * .17;
+            }
+          }
+          particle.vx *= .993;
+          particle.vy *= .993;
+          const speed = Math.hypot(particle.vx, particle.vy);
+          if (speed > .68) {
+            particle.vx = particle.vx / speed * .68;
+            particle.vy = particle.vy / speed * .68;
+          }
+        }
+
+        for (let j = i + 1; j < sceneParticles.length; j++) {
+          const other = sceneParticles[j];
+          const dx = particle.x - other.x;
+          const dy = particle.y - other.y;
+          const distance = Math.hypot(dx, dy);
+          if (distance < 138) {
+            const nearCursor = sceneCursor.active && Math.hypot((particle.x + other.x) / 2 - sceneCursor.drawX, (particle.y + other.y) / 2 - sceneCursor.drawY) < 190;
+            ctx.globalAlpha = (1 - distance / 138) * (nearCursor ? .29 : .115);
+            ctx.strokeStyle = (i + j) % 5 === 0 ? scenePalette.two : scenePalette.one;
+            ctx.lineWidth = nearCursor ? 1 : .7;
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      sceneParticles.forEach((particle, index) => {
+        const shimmer = reduceMotion ? .72 : .48 + (Math.sin(now * .75 + particle.phase) + 1) * .22;
+        ctx.globalAlpha = shimmer;
+        ctx.fillStyle = index % 7 === 0 ? scenePalette.three : index % 3 === 0 ? scenePalette.two : scenePalette.one;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size * (sceneCursor.active && Math.hypot(particle.x - sceneCursor.drawX, particle.y - sceneCursor.drawY) < 135 ? 1.65 : 1), 0, Math.PI * 2);
+        ctx.fill();
+      });
+      ctx.globalAlpha = 1;
+
+      if (sceneCursor.active && finePointer && !reduceMotion) {
+        ctx.strokeStyle = scenePalette.two;
+        ctx.lineWidth = 1;
+        ctx.globalAlpha = .24;
+        ctx.setLineDash([3, 7]);
+        ctx.beginPath();
+        ctx.ellipse(sceneCursor.drawX, sceneCursor.drawY, 33 + Math.sin(now * 1.1) * 5, 16 + Math.cos(now * .9) * 3, now * .12, 0, Math.PI * 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.globalAlpha = .55;
+        ctx.fillStyle = scenePalette.one;
+        ctx.beginPath();
+        ctx.arc(sceneCursor.drawX, sceneCursor.drawY, 2.1, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.globalAlpha = 1;
+      }
+
+      for (let i = sceneRipples.length - 1; i >= 0; i--) {
+        const ripple = sceneRipples[i];
+        ripple.age += delta;
+        const radius = 13 + ripple.age * 4.2;
+        ctx.globalAlpha = Math.max(0, 1 - ripple.age / 38) * .52;
+        ctx.strokeStyle = [scenePalette.one, scenePalette.two, scenePalette.three][ripple.colorIndex];
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.arc(ripple.x, ripple.y, radius, 0, Math.PI * 2);
+        ctx.stroke();
+        if (ripple.age > 38) sceneRipples.splice(i, 1);
+      }
+      ctx.globalAlpha = 1;
+      if (!reduceMotion) sceneAnimationFrame = window.requestAnimationFrame(drawScene);
+    };
+
+    if (sceneCanvas && sceneCtx) {
+      resizeScene();
+      window.addEventListener("resize", resizeScene);
+      window.addEventListener("pointermove", handleScenePointerMove, { passive: true });
+      window.addEventListener("pointerout", handleScenePointerOut);
+      window.addEventListener("pointerdown", handleScenePointerDown, { passive: true });
+      drawScene();
+    }
+
 
     // Reveal content as it enters the viewport; keep everything visible if reduced motion is preferred.
     const revealTargets = Array.from(root.querySelectorAll(
@@ -319,6 +515,13 @@ export default function HomePage() {
         button.removeEventListener("pointermove", onMove);
         button.removeEventListener("pointerleave", onLeave);
       });
+      sceneThemeObserver.disconnect();
+      window.removeEventListener("resize", resizeScene);
+      window.removeEventListener("pointermove", handleScenePointerMove);
+      window.removeEventListener("pointerout", handleScenePointerOut);
+      window.removeEventListener("pointerdown", handleScenePointerDown);
+      if (sceneAnimationFrame) window.cancelAnimationFrame(sceneAnimationFrame);
+      if (sceneCtx && sceneCanvas) sceneCtx.clearRect(0, 0, sceneWidth, sceneHeight);
       progress.remove();
       menuToggle?.removeEventListener("click", toggleMenu);
       nav?.querySelectorAll("a").forEach((link) => link.removeEventListener("click", closeMenu));
