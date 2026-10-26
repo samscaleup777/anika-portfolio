@@ -201,3 +201,34 @@ html[data-period="night"] { --lime: #9fe8ff; --violet: #a6a3ff; }
   .hero-copy h1 > .hero-line.hero-line-accent,
   .hero-copy h1 > .hero-line > span { color: var(--lime); }
 }
+
+
+/* Austin-inspired engineering toolkit — tailored to Anika's frontend stack */
+.tech-stack-heading{display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,420px);align-items:end;gap:36px;margin:0 0 34px}
+.tech-stack-overline{display:block;color:var(--lime);font-size:9px;letter-spacing:.24em;font-weight:700;margin-bottom:13px}
+.tech-stack-heading h2{font-size:clamp(42px,5.6vw,68px);font-weight:650;line-height:1;letter-spacing:-.075em;margin:0}
+.tech-stack-heading h2 span{color:var(--lime)}
+.tech-stack-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.tech-stack-item{min-width:0;min-height:112px;display:flex;align-items:center;gap:15px;padding:18px;background:linear-gradient(135deg,#141927,#0d111b);border:1px solid #ffffff16;border-radius:11px;position:relative;overflow:hidden;transition:transform .25s ease,border-color .25s ease,background .25s ease,box-shadow .25s ease}
+.tech-stack-item:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 0% 0%,#c4ff760c,transparent 68%);opacity:0;transition:opacity .25s ease;pointer-events:none}
+.tech-stack-item:hover{transform:translateY(-4px);border-color:#c4ff7666;box-shadow:0 13px 38px #0003;background:linear-gradient(135deg,#171e2e,#101521)}
+.tech-stack-item:hover:before{opacity:1}
+.tech-stack-icon{flex:0 0 46px;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:800;font-size:16px;letter-spacing:-.06em;border:1px solid currentColor;position:relative;z-index:1}
+.icon-html{color:#ff9b78;background:#e34f2618}
+.icon-css{color:#8ab5ff;background:#264de418}
+.icon-js{color:#f7df1e;background:#f7df1e14;font-size:13px}
+.icon-tailwind{color:#67e8f9;background:#06b6d418;font-size:12px}
+.icon-react{color:#61dafb;background:#61dafb15;font-size:23px}
+.icon-next{color:#f3f4f6;background:#ffffff0c;font-size:21px}
+.tech-stack-copy{min-width:0;position:relative;z-index:1}
+.tech-stack-copy h3{margin:0 0 5px;font-size:15px;letter-spacing:-.025em;font-weight:650;color:#f3f5fb}
+.tech-stack-copy p{margin:0;color:#858fa5;font-size:10px;line-height:1.5}
+.tech-stack-index{margin-left:auto;align-self:flex-start;color:#667087;font-size:9px;letter-spacing:.08em;position:relative;z-index:1}
+.tech-stack-focus{display:flex;flex-wrap:wrap;align-items:center;gap:15px;margin-top:26px;padding-top:23px;border-top:1px solid #ffffff12}
+.tech-stack-focus-label{color:#808aa0;letter-spacing:.17em;font-size:9px;font-weight:700;white-space:nowrap}
+.tech-stack-focus>div{display:flex;flex-wrap:wrap;gap:8px}
+.tech-stack-focus>div span{padding:7px 10px;border:1px solid #ffffff19;border-radius:999px;color:#c2c9d8;background:#ffffff04;font-size:10px}
+.tech-stack-item.reveal-on-scroll{transition-property:opacity,transform,border-color,background,box-shadow;transition-duration:.65s,.65s,.25s,.25s,.25s;transition-timing-function:cubic-bezier(.2,.75,.2,1)}
+@media(max-width:760px){.tech-stack-heading{grid-template-columns:1fr;gap:17px}.tech-stack-heading .section-intro{max-width:560px}.tech-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.tech-stack-focus{align-items:flex-start;flex-direction:column;gap:12px}}
+@media(max-width:480px){.tech-stack-grid{grid-template-columns:1fr}.tech-stack-item{min-height:94px;padding:15px}.tech-stack-heading h2{font-size:clamp(42px,12vw,58px)}.tech-stack-focus>div{gap:7px}.tech-stack-focus>div span{font-size:9px}}
+@media(prefers-reduced-motion:reduce){.tech-stack-item,.tech-stack-item:before{transition:none!important}.tech-stack-item:hover{transform:none}}
