@@ -13,7 +13,7 @@ export const metadata = {
     title: "Anika — Frontend Developer",
     description: "Thoughtful interfaces. Modern web experiences.",
     type: "website",
-    images: [{ url: "/as-logo.webp", width: 535, height: 353, alt: "AS monogram logo on a charcoal background" }]
+    images: [{ url: "/as-logo.webp", width: 240, height: 240, alt: "AS monogram logo on a charcoal background" }]
   },
   twitter: {
     card: "summary_large_image",
