@@ -11,6 +11,8 @@ export default function HomePage() {
     const root = mountRef.current;
     if (!root) return undefined;
     let alive = true;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
 
     // Reveal content as it enters the viewport; keep everything visible if reduced motion is preferred.
     const revealTargets = Array.from(root.querySelectorAll(
@@ -38,8 +40,6 @@ export default function HomePage() {
 
     const nav = root.querySelector(".main-nav");
     const menuToggle = root.querySelector(".menu-toggle");
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(pointer: fine)").matches;
 
     // Give each line of the hero headline its own staggered entrance.
     const heroHeading = root.querySelector(".hero-copy h1");
