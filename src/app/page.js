@@ -11,6 +11,30 @@ export default function HomePage() {
     const root = mountRef.current;
     if (!root) return undefined;
     let alive = true;
+
+    // Reveal content as it enters the viewport; keep everything visible if reduced motion is preferred.
+    const revealTargets = Array.from(root.querySelectorAll(
+      ".hero-foot, .live-weather-wrap, .section-heading, .project-card, .about-grid > div, .skill-card, .process-grid article, .education-card, .resume-card, .contact-card, .site-footer"
+    ));
+    let revealObserver = null;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealTargets.forEach((element) => element.classList.add("is-visible"));
+    } else {
+      revealTargets.forEach((element, index) => {
+        element.classList.add("reveal-on-scroll");
+        element.style.transitionDelay = `${(index % 4) * 85}ms`;
+      });
+      revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            revealObserver?.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: "0px 0px -35px 0px" });
+      revealTargets.forEach((element) => revealObserver.observe(element));
+    }
     let timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
 
     const nav = root.querySelector(".main-nav");
@@ -132,6 +156,7 @@ export default function HomePage() {
 
     return () => {
       alive = false;
+      revealObserver?.disconnect();
       menuToggle?.removeEventListener("click", toggleMenu);
       nav?.querySelectorAll("a").forEach((link) => link.removeEventListener("click", closeMenu));
       filterHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
