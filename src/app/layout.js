@@ -3,7 +3,7 @@ import "./globals.css";
 export const metadata = {
   metadataBase: new URL("https://anika-portfolio-lyart.vercel.app"),
   title: "Annika | Frontend Developer",
-  description: "Thoughtful interfaces. Modern web experiences with JavaScript, React, Next.js and Tailwind CSS.",
+  description: "Annika is a frontend developer building responsive web experiences with JavaScript, React, Next.js, Tailwind CSS, Figma and Motion.",
   icons: {
     icon: [{ url: "/as-mark-31b3d8.webp", type: "image/webp" }],
     shortcut: [{ url: "/as-mark-31b3d8.webp", type: "image/webp" }],
@@ -27,7 +27,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <head><link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" /><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" /></head><body>{children}</body>
     </html>
   );
 }
