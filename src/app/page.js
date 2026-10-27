@@ -452,8 +452,8 @@ export default function HomePage() {
           const rect = card.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width;
           const y = (event.clientY - rect.top) / rect.height;
-          card.style.setProperty("--card-tilt-x", `${(x - .5) * 3.5}deg`);
-          card.style.setProperty("--card-tilt-y", `${(.5 - y) * 3.5}deg`);
+          card.style.setProperty("--card-tilt-x", `${(.5 - x) * 7}deg`);
+          card.style.setProperty("--card-tilt-y", `${(y - .5) * 7}deg`);
           card.style.setProperty("--card-light-x", `${x * 100}%`);
           card.style.setProperty("--card-light-y", `${y * 100}%`);
         };

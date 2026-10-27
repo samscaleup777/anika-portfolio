@@ -1404,3 +1404,32 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
  .faith-site-body,.market-site-body{padding:18px 16px 10px}
 }
 @media(prefers-reduced-motion:reduce){.portfolio-root .project-art{transition:none}.portrait-photo-frame,.portrait-photo-frame img{animation:none!important}}
+
+
+/* Project cards softly lean toward the pointer across all four selected projects. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference){
+ .portfolio-root .project-card{
+  --card-tilt-x:0deg;
+  --card-tilt-y:0deg;
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:transform .18s cubic-bezier(.2,.8,.2,1),border-color .32s ease,box-shadow .32s ease;
+ }
+ .portfolio-root .project-card:hover{
+  transform:perspective(920px) rotateX(var(--card-tilt-y,0deg)) rotateY(var(--card-tilt-x,0deg)) translateY(-4px);
+  border-color:rgba(216,180,254,.7);
+  box-shadow:0 25px 58px rgba(8,5,20,.38),0 0 0 1px rgba(216,180,254,.1),0 0 32px rgba(168,85,247,.1);
+ }
+ .portfolio-root .project-card:before{
+  background:
+   radial-gradient(270px circle at var(--card-light-x,50%) var(--card-light-y,50%),rgba(236,72,153,.17),transparent 72%),
+   linear-gradient(115deg,transparent 20%,rgba(236,72,153,.08) 43%,rgba(99,102,241,.09) 52%,transparent 74%);
+  opacity:0;
+  transition:opacity .25s ease;
+ }
+ .portfolio-root .project-card:hover:before{opacity:1}
+ .portfolio-root .project-card>.project-art,.portfolio-root .project-card>.project-info{transform:translateZ(7px)}
+}
+@media (prefers-reduced-motion:reduce){
+ .portfolio-root .project-card{will-change:auto}
+}
