@@ -1433,3 +1433,20 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
 @media (prefers-reduced-motion:reduce){
  .portfolio-root .project-card{will-change:auto}
 }
+
+
+/* Visible, accessible project sound controls plus responsive click feedback. */
+.portfolio-root .project-sound-button{
+ display:inline-flex!important;visibility:visible!important;opacity:1!important;position:relative;z-index:5;
+ align-items:center;gap:6px;min-height:29px;margin:0 0 12px;padding:6px 10px;
+ border:1px solid rgba(236,72,153,.38);border-radius:999px;
+ background:rgba(236,72,153,.09);color:#f8d7ed;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;
+ cursor:pointer;pointer-events:auto;transition:background .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.portfolio-root .project-sound-button span:first-child{font-size:14px;line-height:1;color:#f9a8d4}
+.portfolio-root .project-sound-button:hover,
+.portfolio-root .project-sound-button.sound-clicked,
+.portfolio-root .project-sound-button:focus-visible{
+ background:rgba(168,85,247,.24);border-color:#c084fc;box-shadow:0 0 0 3px rgba(168,85,247,.1);transform:translateY(-1px)
+}
+@media(prefers-reduced-motion:reduce){.portfolio-root .project-sound-button{transition:none}}

@@ -495,62 +495,75 @@ export default function HomePage() {
 
     const filters = Array.from(root.querySelectorAll(".filters .filter"));
     const cards = Array.from(root.querySelectorAll(".project-card"));
-    // Each project has a different optional short musical signature. Sounds only play after a click.
-    const soundProfiles = [
-      { notes: [523.25, 659.25, 783.99], wave: "sine", label: "soft glass chime" },
-      { notes: [392, 493.88, 587.33], wave: "triangle", label: "warm market tones" },
-      { notes: [440, 554.37, 659.25], wave: "sine", label: "bright developer tones" },
-      { notes: [329.63, 392, 493.88], wave: "triangle", label: "calm fitness tones" }
-    ];
+    // Project sound controls plus unique, short click signatures for all interactive buttons/CTAs.
     const soundButtons = [];
-    const playProjectSignature = async (profile) => {
+    const clickSoundHandlers = [];
+    const playClickSound = async (index) => {
       const AudioContextClass = window.AudioContext || window.webkitAudioContext;
       if (!AudioContextClass) return;
       const audio = new AudioContextClass();
       try {
         await audio.resume();
-        const start = audio.currentTime + 0.025;
-        profile.notes.forEach((frequency, index) => {
+        const start = audio.currentTime + 0.012;
+        const intervalSets = [
+          [4, 7], [3, 7], [5, 9], [2, 7], [4, 9], [3, 8],
+          [5, 7], [2, 9], [4, 7], [3, 9], [5, 8], [2, 5]
+        ];
+        const intervals = intervalSets[index % intervalSets.length];
+        const baseMidi = 48 + index * 1.17;
+        const midiToFrequency = (midi) => 440 * Math.pow(2, (midi - 69) / 12);
+        const frequencies = [baseMidi, baseMidi + intervals[0], baseMidi + intervals[1]];
+        const waveforms = ["sine", "triangle", "sine", "triangle", "sine", "triangle"];
+        frequencies.forEach((midi, noteIndex) => {
           const oscillator = audio.createOscillator();
           const gain = audio.createGain();
-          const noteStart = start + index * 0.115;
-          oscillator.type = profile.wave;
-          oscillator.frequency.setValueAtTime(frequency, noteStart);
+          const noteStart = start + noteIndex * (0.075 + (index % 3) * 0.012);
+          oscillator.type = waveforms[index % waveforms.length];
+          oscillator.frequency.setValueAtTime(midiToFrequency(midi), noteStart);
           gain.gain.setValueAtTime(0.0001, noteStart);
-          gain.gain.exponentialRampToValueAtTime(0.055, noteStart + 0.025);
-          gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.29);
+          gain.gain.exponentialRampToValueAtTime(0.065, noteStart + 0.018);
+          gain.gain.exponentialRampToValueAtTime(0.0001, noteStart + 0.17);
           oscillator.connect(gain);
           gain.connect(audio.destination);
           oscillator.start(noteStart);
-          oscillator.stop(noteStart + 0.31);
+          oscillator.stop(noteStart + 0.185);
         });
-        window.setTimeout(() => audio.close().catch(() => {}), 800);
+        window.setTimeout(() => audio.close().catch(() => {}), 650);
       } catch (error) {
         audio.close().catch(() => {});
       }
     };
-    cards.forEach((card, index) => {
-      const profile = soundProfiles[index % soundProfiles.length];
+
+    // Keep one dedicated sound control on each project card.
+    cards.forEach((card) => {
       const title = card.querySelector("h3")?.textContent?.trim() || "project";
       const button = document.createElement("button");
       button.type = "button";
       button.className = "project-sound-button";
-      button.setAttribute("aria-label", "Play " + profile.label + " for " + title);
-      button.title = "Play a short " + profile.label;
+      button.setAttribute("aria-label", "Play the unique click sound for " + title);
+      button.title = "Play this project's own short tone";
       button.innerHTML = "<span aria-hidden='true'>♫</span><span>Play sound</span>";
-      const handler = (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        playProjectSignature(profile);
-        button.classList.add("is-playing");
-        window.setTimeout(() => button.classList.remove("is-playing"), 650);
-      };
-      button.addEventListener("click", handler);
       const info = card.querySelector(".project-info");
       const stack = info?.querySelector(".project-stack");
       if (stack) stack.insertAdjacentElement("afterend", button);
       else info?.appendChild(button);
-      soundButtons.push([button, handler]);
+      soundButtons.push(button);
+    });
+
+    // Actual buttons, button-styled CTAs, project links and main navigation each get
+    // a unique sound identity, rather than one generic click noise for the whole site.
+    const soundTargets = Array.from(root.querySelectorAll(
+      "button, a.button, a.nav-cta, a.project-live-link, .main-nav a, [role='button']"
+    ));
+    soundTargets.forEach((element, index) => {
+      const handler = () => {
+        playClickSound(index);
+        element.classList.add("sound-clicked");
+        window.setTimeout(() => element.classList.remove("sound-clicked"), 240);
+      };
+      element.dataset.clickSoundIndex = String(index);
+      element.addEventListener("click", handler, true);
+      clickSoundHandlers.push([element, handler]);
     });
     const filterHandlers = filters.map((button) => {
       const handler = () => {
@@ -693,7 +706,8 @@ export default function HomePage() {
       menuToggle?.removeEventListener("click", toggleMenu);
       nav?.querySelectorAll("a").forEach((link) => link.removeEventListener("click", closeMenu));
       filterHandlers.forEach(([button, handler]) => button.removeEventListener("click", handler));
-      soundButtons.forEach(([button, handler]) => button.removeEventListener("click", handler));
+      clickSoundHandlers.forEach(([element, handler]) => element.removeEventListener("click", handler, true));
+      soundButtons.forEach((button) => button.remove());
       window.clearInterval(clockTimer);
       window.clearInterval(weatherTimer);
       document.removeEventListener("visibilitychange", onVisibility);
