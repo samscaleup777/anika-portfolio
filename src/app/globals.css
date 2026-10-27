@@ -935,3 +935,58 @@ html[data-weather="rain"] .ambient-panel,html[data-weather="storm"] .ambient-pan
  .ambient-field:before,.ambient-field:after,.ambient-orbit,.ambient-panel,.ambient-panel-chart i,.ambient-glass-tile,.ambient-crosshair,.ambient-scan-line{animation:none!important}
  .ambient-cursor-halo{display:none}
 }
+
+
+/* Tech stack clarity pass: recognizable multicolour brand icons, larger icon wells and readable labels. */
+.tech-stack-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.tech-stack-item{
+ min-height:136px;gap:17px;padding:21px 20px;border-radius:16px;
+ background:linear-gradient(145deg,rgba(23,29,45,.97),rgba(12,16,26,.97));
+ border-color:rgba(210,220,255,.19);
+ box-shadow:inset 0 1px rgba(255,255,255,.04),0 12px 30px rgba(0,0,0,.16);
+}
+.tech-stack-icon{
+ width:64px;height:64px;flex:0 0 64px;border-radius:17px;display:grid;place-items:center;
+ border:1px solid rgba(255,255,255,.16);position:relative;overflow:hidden;
+ box-shadow:inset 0 1px rgba(255,255,255,.1),0 8px 22px rgba(0,0,0,.22);
+ transition:transform .3s cubic-bezier(.2,.75,.25,1),box-shadow .3s ease,background .3s ease;
+}
+.tech-stack-icon:before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 25% 18%,rgba(255,255,255,.13),transparent 62%)}
+.tech-stack-icon .tech-mark{position:relative;z-index:1;display:block;width:42px;height:42px;overflow:visible;filter:drop-shadow(0 2px 2px rgba(0,0,0,.24))}
+.tech-stack-icon .tailwind-mark{width:44px;height:34px}
+.tech-stack-icon .figma-mark{width:29px;height:44px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.2))}
+.tech-stack-icon .js-mark{width:42px;height:42px;filter:drop-shadow(0 1px 1px rgba(0,0,0,.18))}
+.icon-html{color:#fff;background:linear-gradient(145deg,#e44d2636,#e44d2617);border-color:#e44d267a}
+.icon-css{color:#fff;background:linear-gradient(145deg,#264de43a,#264de41a);border-color:#2965f17a}
+.icon-js{color:#171717;background:linear-gradient(145deg,#f7df1e30,#f7df1e14);border-color:#f7df1e85}
+.icon-tailwind{color:#38bdf8;background:linear-gradient(145deg,#06b6d436,#06b6d417);border-color:#38bdf87b}
+.icon-react{color:#61dafb;background:linear-gradient(145deg,#61dafb30,#61dafb12);border-color:#61dafb80}
+.icon-next{color:#fff;background:linear-gradient(145deg,#ffffff1c,#ffffff0b);border-color:#ffffff43}
+.icon-figma{color:#fff;background:linear-gradient(145deg,#a259ff27,#1abcfe14);border-color:#a259ff7c}
+.icon-motion{color:#d9ccff;background:linear-gradient(145deg,#a78bfa32,#6d5ae816);border-color:#a78bfa7e}
+.tech-stack-copy{min-width:0;position:relative;z-index:1}
+.tech-stack-copy h3{font-size:17px;line-height:1.25;color:#f7f8fc;font-weight:750;letter-spacing:-.025em;margin:0 0 7px;overflow-wrap:anywhere}
+.tech-stack-copy p{font-size:12px;line-height:1.5;color:#b8c0d2;margin:0}
+.tech-stack-index{font-size:10px;color:#aab4c8;letter-spacing:.1em}
+.tech-stack-item:hover .tech-stack-icon{transform:translateY(-3px) scale(1.045) rotate(-2deg);box-shadow:inset 0 1px rgba(255,255,255,.14),0 0 0 4px color-mix(in srgb,currentColor 9%,transparent),0 12px 30px rgba(0,0,0,.3)}
+.tech-stack-item:hover .tech-mark{filter:drop-shadow(0 0 6px currentColor)}
+@media(max-width:900px){
+ .tech-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+ .tech-stack-item{min-height:124px;padding:17px;gap:14px}
+ .tech-stack-icon{width:60px;height:60px;flex-basis:60px;border-radius:15px}
+ .tech-stack-icon .tech-mark{width:40px;height:40px}
+ .tech-stack-icon .tailwind-mark{width:42px;height:32px}
+ .tech-stack-icon .figma-mark{width:27px;height:42px}
+}
+@media(max-width:520px){
+ .tech-stack-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+ .tech-stack-item{min-height:112px;padding:13px 11px;gap:10px;border-radius:13px}
+ .tech-stack-icon{width:48px;height:48px;flex-basis:48px;border-radius:13px}
+ .tech-stack-icon .tech-mark{width:33px;height:33px}
+ .tech-stack-icon .tailwind-mark{width:35px;height:27px}
+ .tech-stack-icon .figma-mark{width:22px;height:34px}
+ .tech-stack-copy h3{font-size:14px;margin-bottom:4px}
+ .tech-stack-copy p{font-size:10px;line-height:1.4}
+ .tech-stack-index{font-size:8px}
+}
+@media(prefers-reduced-motion:reduce){.tech-stack-icon,.tech-stack-icon .tech-mark{transition:none!important}}
