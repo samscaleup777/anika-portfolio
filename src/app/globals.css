@@ -990,3 +990,184 @@ html[data-weather="rain"] .ambient-panel,html[data-weather="storm"] .ambient-pan
  .tech-stack-index{font-size:8px}
 }
 @media(prefers-reduced-motion:reduce){.tech-stack-icon,.tech-stack-icon .tech-mark{transition:none!important}}
+
+
+/* Readable adaptive palette: daytime no longer washes the navbar and cards white.
+   Time, season, location and weather still change the accent and background mood. */
+html[data-time="day"],html[data-time="night"]{
+  color-scheme:dark;
+  --panel:#151d2a;
+  --panel2:#1b2636;
+  --line:#d8e4ff2d;
+  --text:#f5f7ff;
+  --muted:#c0cadb;
+  --subtle:#97a4bb;
+}
+html[data-time="day"]{
+  --bg:#101923;
+  --scene-base:#111b26;
+  --grid-line:#a6d9e818;
+  --season-glow:#a0d4c126;
+}
+html[data-time="night"]{
+  --bg:#080b16;
+  --scene-base:#070a14;
+  --grid-line:#b6a7ff12;
+  --season-glow:#8870ff2b;
+}
+html[data-season="spring"]{--lime:#9fe1a0;--violet:#b8b6ff;--season-glow:#70de9e2e}
+html[data-season="summer"]{--lime:#f1d36c;--violet:#f1ae7a;--season-glow:#f0c65b2c}
+html[data-season="monsoon"]{--lime:#65d8ed;--violet:#8fb5ff;--season-glow:#39b6d63a}
+html[data-season="autumn"]{--lime:#ffbd7c;--violet:#f0a9d0;--season-glow:#eb884b32}
+html[data-season="late-autumn"]{--lime:#edc08b;--violet:#e4a8c8;--season-glow:#ba794832}
+html[data-season="winter"]{--lime:#92dcff;--violet:#c1b7ff;--season-glow:#67aaf13a}
+html[data-season="tropical"]{--lime:#7ae9b5;--violet:#9fb6ff;--season-glow:#4edb9a30}
+html[data-season="wet-tropical"]{--lime:#72e5ef;--violet:#aab7ff;--season-glow:#38c0e83a}
+html[data-period="morning"]{--lime:#a7e3ad;--violet:#b5c7ff}
+html[data-period="afternoon"]{--lime:#f2d66d;--violet:#c6b5ff}
+html[data-period="evening"]{--lime:#ffb17a;--violet:#f4a3d0}
+html[data-period="night"]{--lime:#8fdcff;--violet:#b5acff}
+html[data-weather="clear"]{--season-glow:#e7bd4540}
+html[data-weather="cloudy"]{--season-glow:#a3b8d532}
+html[data-weather="rain"]{--season-glow:#37a6d94a}
+html[data-weather="snow"]{--season-glow:#a1d3ff42}
+html[data-weather="storm"]{--season-glow:#7460ed4a}
+html[data-weather="fog"]{--season-glow:#b0c1d333}
+
+/* Never allow the sticky navbar to turn white in daytime. Keep a dark glass surface
+   and let the visitor's climate accent tint its border, links and call to action. */
+.site-header,.portfolio-root>.site-header{
+  color:#f5f7ff!important;
+  background:linear-gradient(105deg,rgba(13,19,30,.96),rgba(17,23,37,.91))!important;
+  border-bottom:1px solid color-mix(in srgb,var(--lime) 29%,rgba(255,255,255,.13))!important;
+  box-shadow:0 8px 30px rgba(0,0,0,.12);
+  -webkit-backdrop-filter:blur(22px) saturate(145%)!important;
+  backdrop-filter:blur(22px) saturate(145%)!important;
+}
+html[data-time="day"] .site-header,html[data-time="day"] .portfolio-root>.site-header{
+  background:linear-gradient(105deg,rgba(17,30,39,.96),rgba(20,26,42,.93))!important;
+}
+html[data-time="night"] .site-header,html[data-time="night"] .portfolio-root>.site-header{
+  background:linear-gradient(105deg,rgba(8,11,23,.97),rgba(20,15,39,.95))!important;
+}
+.site-header .main-nav>a{color:#d7deef!important;font-weight:600}
+.site-header .main-nav>a:hover,.site-header .main-nav>a:focus-visible{color:var(--lime)!important}
+.site-header .main-nav .nav-cta{
+  color:var(--lime)!important;
+  background:color-mix(in srgb,var(--lime) 13%,rgba(15,20,31,.9))!important;
+  border-color:color-mix(in srgb,var(--lime) 62%,transparent)!important;
+}
+.site-header .brand b{color:#fff!important}
+.site-header .brand small{color:#b6c0d3!important}
+.site-header .menu-toggle{color:#f5f7ff!important;background:#ffffff08!important;border-color:#ffffff2b!important}
+body{background:var(--bg)!important;color:var(--text)}
+body:before{
+  background:
+    radial-gradient(640px circle at var(--field-pointer-x,62vw) var(--field-pointer-y,42vh),color-mix(in srgb,var(--violet) 12%,transparent),transparent 70%),
+    radial-gradient(ellipse at 78% 22%,var(--season-glow),transparent 47%),
+    radial-gradient(ellipse at 14% 68%,color-mix(in srgb,var(--lime) 9%,transparent),transparent 42%),
+    var(--scene-base)!important;
+  transition:background 1.1s ease!important;
+}
+.hero-copy .kicker{gap:9px;font-family:"DM Sans",ui-sans-serif,system-ui,sans-serif;font-size:12px;font-weight:750;letter-spacing:.105em;line-height:1.6;color:#dce4f5}
+.hero-copy .kicker .line{display:none!important}
+.hero-copy .kicker .lime{font-size:15px;color:var(--lime)}
+/* Keep typography stable and high-contrast rather than changing to thin decorative fonts by season. */
+html,html[data-season]{--theme-font:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;--theme-display-font:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}
+body,.hero-text,.section-intro,.about-copy p,.project-info p,.process-grid p,.education-details p,.contact-copy,.resume-copy{
+  font-family:"DM Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
+}
+h1,h2,h3,.brand,.main-nav,.button,.kicker,.eyebrow,.tech-stack-overline{
+  font-family:"Manrope",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif!important;
+}
+.hero-copy h1{font-size:clamp(60px,6.8vw,96px);font-weight:800;letter-spacing:-.06em;line-height:1.01}
+.hero-text{font-size:clamp(17px,1.25vw,19px);line-height:1.8;color:#d2daea}
+.section-heading h2,.about-grid h2,.process-section h2,.tech-stack-heading h2,.resume-card h2,.contact-card h2{font-weight:800;letter-spacing:-.055em}
+html[data-time="day"] .hero-copy h1,html[data-time="day"] .section-heading h2,html[data-time="day"] .about-grid h2,html[data-time="day"] .process-section h2,html[data-time="day"] .tech-stack-heading h2,html[data-time="day"] .resume-card h2,html[data-time="day"] .contact-card h2{color:#f5f7ff!important}
+html[data-time="day"] .hero-text,html[data-time="day"] .section-intro,html[data-time="day"] .about-copy p,html[data-time="day"] .project-info p{color:#d2daea!important}
+
+/* Animate Annika's portrait as a living focal point, not a static badge. */
+.hero-portrait{perspective:1000px}
+.portrait-photo-frame{
+  width:min(100%,420px)!important;
+  height:auto!important;
+  aspect-ratio:1/1!important;
+  padding:5px;
+  border-radius:50%!important;
+  overflow:hidden;
+  transform-origin:center;
+  animation:portrait-float-orbit 8s ease-in-out infinite,portrait-halo-breathe 5.8s ease-in-out infinite;
+  will-change:transform,box-shadow;
+}
+.portrait-photo-frame img{
+  width:100%!important;height:100%!important;aspect-ratio:1/1!important;object-fit:cover!important;object-position:52% 40%!important;
+  border-radius:50%!important;
+  animation:portrait-photo-drift 18s ease-in-out infinite alternate;
+  transform-origin:center;
+  will-change:transform,filter;
+}
+.portrait-photo-frame:after{border-radius:50%;opacity:.6;background:linear-gradient(135deg,rgba(255,255,255,.08),transparent 36%,rgba(7,9,17,.2))!important}
+.hero-portrait:hover .portrait-photo-frame{animation-duration:4s,3s}
+.hero-portrait:hover .portrait-photo-frame img{animation-duration:8s}
+.portrait-orbit{filter:drop-shadow(0 0 7px color-mix(in srgb,var(--violet) 40%,transparent))}
+.portrait-orbit-one{animation:portrait-orbit 19s linear infinite!important}
+.portrait-orbit-two{animation:portrait-orbit 27s linear infinite reverse!important}
+@keyframes portrait-float-orbit{0%,100%{transform:translate3d(0,0,0) rotateY(-2deg) rotateZ(-1deg)}50%{transform:translate3d(0,-10px,0) rotateY(2deg) rotateZ(1deg)}}
+@keyframes portrait-photo-drift{0%{transform:scale(1) translate3d(-.8%,0,0);filter:saturate(.97) contrast(1)}100%{transform:scale(1.075) translate3d(.8%,-.6%,0);filter:saturate(1.08) contrast(1.03)}}
+
+/* More motion in the full viewport: particle streams, moving circuit paths,
+   small orbital devices, floating data ribbons and a layered scan sweep. */
+.ambient-particle-stream{position:absolute;display:flex;align-items:center;justify-content:space-around;gap:clamp(16px,4vw,58px);height:1px;pointer-events:none;opacity:.55;transform-origin:left center}
+.ambient-particle-stream i{display:block;flex:0 0 auto;width:3px;height:3px;border-radius:50%;background:var(--cursor-two);box-shadow:0 0 12px color-mix(in srgb,var(--cursor-two) 92%,transparent);animation:particle-pulse 2.8s ease-in-out infinite}
+.ambient-particle-stream i:nth-child(2n){width:2px;height:2px;background:var(--cursor-one);animation-delay:-.8s}
+.ambient-particle-stream i:nth-child(3n){width:4px;height:4px;background:var(--cursor-three);animation-delay:-1.6s}
+.stream-one{left:8%;top:25%;width:82%;transform:rotate(17deg);animation:stream-travel-one 18s ease-in-out infinite}
+.stream-two{left:21%;top:71%;width:74%;transform:rotate(-23deg);animation:stream-travel-two 22s ease-in-out infinite}
+.stream-three{left:2%;top:52%;width:90%;transform:rotate(-8deg);animation:stream-travel-three 26s ease-in-out infinite}
+.ambient-neural-line{position:absolute;height:1px;width:clamp(150px,35vw,490px);transform-origin:left center;opacity:.52;background:linear-gradient(90deg,transparent,var(--cursor-two),var(--cursor-one),transparent);box-shadow:0 0 14px color-mix(in srgb,var(--cursor-two) 40%,transparent)}
+.ambient-neural-line:before,.ambient-neural-line:after{content:"";position:absolute;top:50%;width:7px;height:7px;border:1px solid var(--cursor-one);border-radius:50%;background:var(--scene-base);box-shadow:0 0 15px color-mix(in srgb,var(--cursor-one) 70%,transparent);transform:translateY(-50%)}
+.ambient-neural-line:before{left:23%}.ambient-neural-line:after{right:19%;border-color:var(--cursor-three)}
+.neural-one{left:10%;top:41%;transform:rotate(36deg);animation:neural-extend-one 11s ease-in-out infinite}
+.neural-two{right:-5%;top:34%;transform:rotate(-31deg);animation:neural-extend-two 15s ease-in-out infinite}
+.neural-three{left:35%;bottom:16%;transform:rotate(-13deg);animation:neural-extend-three 13s ease-in-out infinite}
+.ambient-micro-orbit{position:absolute;width:110px;height:110px;border:1px solid color-mix(in srgb,var(--cursor-two) 33%,transparent);border-radius:50%;box-shadow:0 0 0 10px color-mix(in srgb,var(--cursor-two) 3%,transparent),inset 0 0 22px color-mix(in srgb,var(--cursor-one) 4%,transparent);animation:micro-orbit-spin 17s linear infinite}
+.ambient-micro-orbit:before,.ambient-micro-orbit:after{content:"";position:absolute;inset:15%;border:1px dashed color-mix(in srgb,var(--cursor-one) 36%,transparent);border-radius:50%;transform:rotate(40deg)}
+.ambient-micro-orbit:after{inset:28%;border-style:solid;border-color:color-mix(in srgb,var(--cursor-three) 40%,transparent)}
+.ambient-micro-orbit i{position:absolute;top:-4px;left:48%;width:7px;height:7px;border-radius:50%;background:var(--cursor-one);box-shadow:0 0 14px var(--cursor-one)}
+.micro-orbit-one{left:14%;top:15%;animation-duration:23s}
+.micro-orbit-two{right:14%;bottom:14%;width:145px;height:145px;border-color:color-mix(in srgb,var(--cursor-one) 33%,transparent);animation-duration:30s;animation-direction:reverse}
+.micro-orbit-three{left:49%;top:61%;width:58px;height:58px;animation-duration:12s;border-color:color-mix(in srgb,var(--cursor-three) 42%,transparent)}
+.ambient-hex-cluster{position:absolute;display:flex;gap:9px;opacity:.5;animation:hex-cluster-float 9s ease-in-out infinite}
+.ambient-hex-cluster i{display:block;width:17px;height:20px;background:color-mix(in srgb,var(--cursor-two) 7%,transparent);border:1px solid color-mix(in srgb,var(--cursor-two) 60%,transparent);clip-path:polygon(25% 0,75% 0,100% 50%,75% 100%,25% 100%,0 50%);filter:drop-shadow(0 0 8px color-mix(in srgb,var(--cursor-two) 35%,transparent))}
+.hex-cluster-one{right:26%;top:17%;transform:rotate(19deg)}
+.hex-cluster-two{left:29%;bottom:19%;transform:rotate(-14deg);animation-delay:-4s}
+.ambient-data-ribbon{position:absolute;width:clamp(150px,25vw,350px);height:52px;border-top:1px solid color-mix(in srgb,var(--cursor-one) 36%,transparent);border-bottom:1px solid color-mix(in srgb,var(--cursor-two) 30%,transparent);background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--cursor-two) 5%,transparent),transparent);transform:skewY(-16deg);opacity:.38;animation:ribbon-slide 15s ease-in-out infinite}
+.ribbon-one{right:-4%;top:43%}.ribbon-two{left:-5%;bottom:28%;transform:skewY(12deg);animation-delay:-7s}
+@keyframes particle-pulse{0%,100%{opacity:.24;scale:.72}50%{opacity:1;scale:1.7}}
+@keyframes stream-travel-one{0%,100%{translate:-1.5% -9px;opacity:.18}50%{translate:2.5% 12px;opacity:.72}}
+@keyframes stream-travel-two{0%,100%{translate:2% 10px;opacity:.22}50%{translate:-3% -10px;opacity:.66}}
+@keyframes stream-travel-three{0%,100%{translate:0 0;opacity:.16}50%{translate:4% -13px;opacity:.62}}
+@keyframes neural-extend-one{0%,100%{translate:-8px 2px;scale:.87;opacity:.22}50%{translate:12px -8px;scale:1.06;opacity:.76}}
+@keyframes neural-extend-two{0%,100%{translate:10px -5px;scale:1;opacity:.2}50%{translate:-12px 8px;scale:.88;opacity:.7}}
+@keyframes neural-extend-three{0%,100%{translate:0 0;scale:.92;opacity:.21}50%{translate:10px 7px;scale:1.09;opacity:.62}}
+@keyframes micro-orbit-spin{from{rotate:0deg}to{rotate:360deg}}
+@keyframes hex-cluster-float{0%,100%{translate:0 0;rotate:-6deg;opacity:.28}50%{translate:0 -18px;rotate:8deg;opacity:.72}}
+@keyframes ribbon-slide{0%,100%{translate:-4% 8px;opacity:.13}50%{translate:5% -12px;opacity:.52}}
+@media(max-width:800px){
+ .ambient-particle-stream{gap:28px}
+ .stream-one{left:4%;width:95%}.stream-two{left:4%;width:90%}.stream-three{left:-1%;width:100%}
+ .ambient-micro-orbit{opacity:.72;scale:.78}.micro-orbit-one{left:3%;top:16%}.micro-orbit-two{right:3%;bottom:11%}.micro-orbit-three{left:67%;top:55%}
+ .ambient-neural-line{opacity:.34}.neural-one{left:0}.neural-three{left:13%}
+ .ambient-data-ribbon{opacity:.25}
+}
+@media(max-width:520px){
+ .ambient-particle-stream{gap:19px;opacity:.35}
+ .ambient-micro-orbit{scale:.55;opacity:.48}.micro-orbit-one{left:-6%;top:15%}.micro-orbit-two{right:-8%;bottom:12%}.micro-orbit-three{left:68%;top:58%}
+ .ambient-neural-line{opacity:.23}.ambient-hex-cluster{scale:.72;opacity:.32}.ambient-data-ribbon{opacity:.17}
+ .portrait-photo-frame{width:min(76vw,320px)!important}
+ .hero-copy .kicker{font-size:10px;letter-spacing:.075em;gap:7px}
+}
+@media(prefers-reduced-motion:reduce){
+ .portrait-photo-frame,.portrait-photo-frame img,.ambient-particle-stream,.ambient-particle-stream i,.ambient-neural-line,.ambient-micro-orbit,.ambient-hex-cluster,.ambient-data-ribbon{animation:none!important}
+ .portrait-photo-frame img{transform:none!important}
+}
