@@ -9,9 +9,13 @@ export default function HomePage() {
 
   useEffect(() => {
     const navigationEntry = window.performance?.getEntriesByType?.("navigation")?.[0];
-    if (!window.location.hash && navigationEntry?.type === "reload") {
+    if (navigationEntry?.type === "reload") {
       if ("scrollRestoration" in window.history) window.history.scrollRestoration = "manual";
       window.scrollTo(0, 0);
+      // Repeat after the browser has applied any delayed scroll restoration.
+      window.requestAnimationFrame(() => window.scrollTo(0, 0));
+      window.requestAnimationFrame(() => window.requestAnimationFrame(() => window.scrollTo(0, 0)));
+      window.setTimeout(() => window.scrollTo(0, 0), 80);
     }
     const root = mountRef.current;
     if (!root) return undefined;
