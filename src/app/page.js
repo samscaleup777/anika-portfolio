@@ -479,9 +479,9 @@ export default function HomePage() {
             `perspective(660px) rotateX(${tilt.currentY.toFixed(2)}deg) rotateY(${tilt.currentX.toFixed(2)}deg) rotateZ(${tilt.currentRoll.toFixed(2)}deg) translateY(${tilt.inside ? -6 : 0}px) scale(${tilt.inside ? 1.012 : 1})`,
             "important"
           );
-          if (tilt.inside || !settled) {
+          if (!settled) {
             tilt.frame = window.requestAnimationFrame(animateTilt);
-          } else {
+          } else if (!tilt.inside) {
             card.classList.remove("is-tilting");
             card.style.removeProperty("transform");
             card.style.removeProperty("z-index");
