@@ -452,16 +452,23 @@ export default function HomePage() {
           const rect = card.getBoundingClientRect();
           const x = (event.clientX - rect.left) / rect.width;
           const y = (event.clientY - rect.top) / rect.height;
-          card.style.setProperty("--card-tilt-x", `${(.5 - x) * 7}deg`);
-          card.style.setProperty("--card-tilt-y", `${(y - .5) * 7}deg`);
+          const tiltX = (.5 - x) * 7;
+          const tiltY = (y - .5) * 7;
+          card.style.setProperty("--card-tilt-x", `${tiltX}deg`);
+          card.style.setProperty("--card-tilt-y", `${tiltY}deg`);
           card.style.setProperty("--card-light-x", `${x * 100}%`);
           card.style.setProperty("--card-light-y", `${y * 100}%`);
+          /* Inline important transform prevents older card-hover rules from cancelling tilt on cards 1, 3 or 4. */
+          card.style.setProperty("transform", `perspective(920px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) translateY(-4px)`, "important");
+          card.style.setProperty("z-index", "20", "important");
         };
         const onLeave = () => {
           card.style.setProperty("--card-tilt-x", "0deg");
           card.style.setProperty("--card-tilt-y", "0deg");
           card.style.setProperty("--card-light-x", "50%");
           card.style.setProperty("--card-light-y", "50%");
+          card.style.removeProperty("transform");
+          card.style.removeProperty("z-index");
         };
         card.addEventListener("pointermove", onMove, { passive: true });
         card.addEventListener("pointerleave", onLeave);
