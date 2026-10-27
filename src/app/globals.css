@@ -1347,3 +1347,60 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
  .live-preview-iframe{transform:scale(.235)}
  .portfolio-root .project-info{padding:18px}
 }
+
+
+/* Compact Selected Work grid with hover-to-reveal project previews. */
+.portfolio-root .project-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.portfolio-root .project-card{min-width:0;align-self:start}
+.portfolio-root .project-art{height:68px;min-height:68px;padding:8px;transition:height .42s cubic-bezier(.2,.8,.2,1),min-height .42s ease}
+.portfolio-root .project-card:hover .project-art,.portfolio-root .project-card:focus-within .project-art{height:212px;min-height:212px}
+.portfolio-root .project-info{padding:14px 15px 15px}
+.portfolio-root .project-info .tag-row{gap:6px;margin-bottom:8px}
+.portfolio-root .project-info h3{font-size:clamp(15px,1.25vw,18px);margin:0 0 8px;line-height:1.24}
+.portfolio-root .project-info p{font-size:12px;line-height:1.55;margin:0 0 12px;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden}
+.portfolio-root .project-stack{gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.portfolio-root .project-stack span{font-size:9px;padding:4px 7px}
+.portfolio-root .project-live-link{font-size:11px}
+.project-mock-link{inset:8px!important;background:#f9f5f1!important;text-decoration:none}
+.faith-site-preview,.market-site-preview{position:absolute;inset:0;overflow:hidden;color:#272337;background:#fbf8f5;font-family:ui-sans-serif,system-ui,sans-serif}
+.faith-site-nav,.market-site-nav{height:31px;display:flex;align-items:center;gap:clamp(5px,1vw,15px);padding:0 12px;border-bottom:1px solid rgba(30,25,40,.08);font-size:clamp(6px,.6vw,9px);white-space:nowrap}
+.faith-site-logo{width:20px;height:20px;display:grid;place-items:center;border-radius:50%;background:#796b8e;color:#fff;font-family:Georgia,serif;font-size:15px}
+.faith-site-nav>b{font-family:Georgia,serif;font-size:clamp(9px,1vw,14px);margin-right:auto}
+.faith-site-nav>i,.market-site-nav>i{font-style:normal;margin-left:auto;font-size:15px}
+.faith-site-body{position:relative;padding:20px 18px 10px;min-height:190px;background:linear-gradient(110deg,#f7eee7 0%,#f7eee7 58%,#e9dfeb 100%)}
+.faith-site-eyebrow,.market-eyebrow{font-size:clamp(5px,.55vw,8px);font-weight:800;letter-spacing:.17em;color:#8d6682}
+.faith-site-body h4,.market-site-body h4{position:relative;z-index:1;margin:9px 0 6px;font:500 clamp(22px,2.35vw,34px)/.98 Georgia,'Times New Roman',serif;letter-spacing:-.04em}
+.faith-site-body p,.market-site-body p{position:relative;z-index:1;max-width:205px;font-size:clamp(7px,.65vw,9px);line-height:1.5;color:#766d78;margin:0 0 12px}
+.faith-site-cta{display:inline-block;position:relative;z-index:1;padding:7px 10px;border-radius:4px;background:#80718d;color:white;font-size:clamp(6px,.6vw,8px)}
+.faith-site-orb{position:absolute;right:-7px;top:22px;width:37%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3df,#d5bdb8 46%,#b49cab 70%,#8e819e);box-shadow:inset -12px -8px 24px #69587533}
+.faith-site-feature{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:clamp(5px,.55vw,8px);color:#716578;white-space:nowrap}
+.faith-site-feature b{font-size:13px;color:#8a7293}
+.market-site-preview{background:#f7fbf5;color:#1e3528}
+.market-site-nav{border-bottom-color:#dfe9de}
+.market-site-nav>b{font-size:clamp(9px,1vw,14px);margin-right:auto;color:#24613d}
+.market-site-nav>b span{color:#6eaa50}
+.market-site-body{padding:20px 18px;background:linear-gradient(120deg,#f6fbf3 0%,#edf7e9 62%,#d4ead4 100%);min-height:190px}
+.market-eyebrow{color:#55935e}
+.market-site-body h4{color:#193f2c}
+.market-site-body p{color:#5c7762}
+.market-price-row{display:flex;gap:6px;position:relative;z-index:1;margin-top:14px}
+.market-price-row span{flex:1;min-width:0;border:1px solid #d9e8d3;background:#ffffffb8;border-radius:5px;padding:7px 6px;font-size:clamp(6px,.6vw,8px);color:#66816d}
+.market-price-row b{display:block;margin-top:4px;color:#23643a;font-size:clamp(7px,.7vw,10px)}
+.project-sound-button{display:inline-flex;align-items:center;gap:6px;min-height:27px;margin:0 0 12px;padding:5px 9px;border:1px solid rgba(236,72,153,.35);border-radius:999px;background:rgba(236,72,153,.07);color:#f4c5e1;font:600 10px/1 ui-sans-serif,system-ui,sans-serif;cursor:pointer;transition:background .2s,border-color .2s,transform .2s}
+.project-sound-button span:first-child{font-size:14px;line-height:1;color:#f9a8d4}
+.project-sound-button:hover,.project-sound-button.is-playing{background:rgba(168,85,247,.2);border-color:#c084fc;transform:translateY(-1px)}
+.portfolio-root .project-card:hover .project-art .project-preview-image{transform:scale(1.015)}
+/* Preserve gentle portrait motion without magnifying the face on cursor hover. */
+.portrait-photo-frame{animation:portrait-float-orbit 8s ease-in-out infinite!important;transform-origin:center center}
+.portrait-photo-frame img{animation:portrait-photo-pan 15s ease-in-out infinite alternate!important;transform-origin:center center;object-fit:contain!important}
+.hero-portrait:hover .portrait-photo-frame{animation:portrait-float-orbit 8s ease-in-out infinite!important;transform:none!important}
+.hero-portrait:hover .portrait-photo-frame img{animation:portrait-photo-pan 15s ease-in-out infinite alternate!important;transform-origin:center center!important}
+@keyframes portrait-photo-pan{0%{transform:translate3d(-.45%,0,0) rotate(-.15deg);filter:saturate(.98)}50%{transform:translate3d(.35%,-.25%,0) rotate(.12deg);filter:saturate(1.025)}100%{transform:translate3d(.15%,0,0) rotate(-.08deg);filter:saturate(1)}}
+@media(max-width:1000px){.portfolio-root .project-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+ .portfolio-root .project-grid{grid-template-columns:minmax(0,1fr)}
+ .portfolio-root .project-art,.portfolio-root .project-card:hover .project-art,.portfolio-root .project-card:focus-within .project-art{height:172px;min-height:172px}
+ .portfolio-root .project-info{padding:16px 16px 17px}
+ .faith-site-body,.market-site-body{padding:18px 16px 10px}
+}
+@media(prefers-reduced-motion:reduce){.portfolio-root .project-art{transition:none}.portrait-photo-frame,.portrait-photo-frame img{animation:none!important}}
