@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <Script id="reload-scroll-top" strategy="beforeInteractive">{\`(() => {
+        <Script id="reload-scroll-top" strategy="beforeInteractive">{`(() => {
           try {
             const navigation = window.performance?.getEntriesByType?.("navigation")?.[0];
             if (navigation?.type !== "reload") return;
@@ -51,7 +51,7 @@ export default function RootLayout({ children }) {
               window.requestAnimationFrame(scrollTop);
             });
           } catch (error) {}
-        })();\`}</Script>
+        })();`}</Script>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
