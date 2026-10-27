@@ -450,33 +450,76 @@ export default function HomePage() {
 
     const tiltCards = [];
     const magneticButtons = [];
-    if (finePointer) {
+    if (finePointer && !reduceMotion) {
       root.querySelectorAll(".project-card").forEach((card) => {
+        const tilt = {
+          currentX: 0, currentY: 0, targetX: 0, targetY: 0,
+          inside: false, frame: 0
+        };
+        const animateTilt = () => {
+          tilt.frame = 0;
+          const follow = tilt.inside ? 0.38 : 0.24;
+          tilt.currentX += (tilt.targetX - tilt.currentX) * follow;
+          tilt.currentY += (tilt.targetY - tilt.currentY) * follow;
+          const settled = Math.abs(tilt.targetX - tilt.currentX) < 0.035
+            && Math.abs(tilt.targetY - tilt.currentY) < 0.035;
+          if (settled) {
+            tilt.currentX = tilt.targetX;
+            tilt.currentY = tilt.targetY;
+          }
+          card.style.setProperty("--card-tilt-x", `${tilt.currentX.toFixed(2)}deg`);
+          card.style.setProperty("--card-tilt-y", `${tilt.currentY.toFixed(2)}deg`);
+          card.style.setProperty(
+            "transform",
+            `perspective(760px) rotateX(${tilt.currentY.toFixed(2)}deg) rotateY(${tilt.currentX.toFixed(2)}deg) translateY(${tilt.inside ? -5 : 0}px)`,
+            "important"
+          );
+          if (tilt.inside) {
+            if (!settled) tilt.frame = window.requestAnimationFrame(animateTilt);
+          } else if (!settled) {
+            tilt.frame = window.requestAnimationFrame(animateTilt);
+          } else {
+            card.classList.remove("is-tilting");
+            card.style.removeProperty("transform");
+            card.style.removeProperty("z-index");
+          }
+        };
+        const queueTilt = () => {
+          if (!tilt.frame) tilt.frame = window.requestAnimationFrame(animateTilt);
+        };
         const onMove = (event) => {
           const rect = card.getBoundingClientRect();
-          const x = (event.clientX - rect.left) / rect.width;
-          const y = (event.clientY - rect.top) / rect.height;
-          const tiltX = (.5 - x) * 7;
-          const tiltY = (y - .5) * 7;
-          card.style.setProperty("--card-tilt-x", `${tiltX}deg`);
-          card.style.setProperty("--card-tilt-y", `${tiltY}deg`);
+          if (!rect.width || !rect.height) return;
+          const x = Math.max(0, Math.min(1, (event.clientX - rect.left) / rect.width));
+          const y = Math.max(0, Math.min(1, (event.clientY - rect.top) / rect.height));
+          // Larger travel gives a deeper but still natural 3D response (up to ~12°).
+          tilt.targetX = (.5 - x) * 24;
+          tilt.targetY = (y - .5) * 20;
+          tilt.inside = true;
+          card.classList.add("is-tilting");
           card.style.setProperty("--card-light-x", `${x * 100}%`);
           card.style.setProperty("--card-light-y", `${y * 100}%`);
-          /* Inline important transform prevents older card-hover rules from cancelling tilt on cards 1, 3 or 4. */
-          card.style.setProperty("transform", `perspective(920px) rotateX(${tiltY}deg) rotateY(${tiltX}deg) translateY(-4px)`, "important");
           card.style.setProperty("z-index", "20", "important");
+          queueTilt();
         };
         const onLeave = () => {
-          card.style.setProperty("--card-tilt-x", "0deg");
-          card.style.setProperty("--card-tilt-y", "0deg");
+          tilt.inside = false;
+          tilt.targetX = 0;
+          tilt.targetY = 0;
           card.style.setProperty("--card-light-x", "50%");
           card.style.setProperty("--card-light-y", "50%");
+          queueTilt();
+        };
+        const stopTilt = () => {
+          if (tilt.frame) window.cancelAnimationFrame(tilt.frame);
+          tilt.frame = 0;
+          card.classList.remove("is-tilting");
           card.style.removeProperty("transform");
           card.style.removeProperty("z-index");
         };
         card.addEventListener("pointermove", onMove, { passive: true });
         card.addEventListener("pointerleave", onLeave);
-        tiltCards.push([card, onMove, onLeave]);
+        tiltCards.push([card, onMove, onLeave, stopTilt]);
       });
       if (!reduceMotion) {
       root.querySelectorAll(".button").forEach((button) => {
@@ -732,9 +775,10 @@ export default function HomePage() {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
       if (finePointer && !reduceMotion) root.removeEventListener("pointermove", handlePointerMove);
-      tiltCards.forEach(([card, onMove, onLeave]) => {
+      tiltCards.forEach(([card, onMove, onLeave, stopTilt]) => {
         card.removeEventListener("pointermove", onMove);
         card.removeEventListener("pointerleave", onLeave);
+        stopTilt?.();
       });
       magneticButtons.forEach(([button, onMove, onLeave]) => {
         button.removeEventListener("pointermove", onMove);
