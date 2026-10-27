@@ -1466,3 +1466,36 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
 .portfolio-root .sound-clicked:not(.project-sound-button){
  box-shadow:0 0 0 3px rgba(168,85,247,.13),0 0 20px rgba(236,72,153,.16);
 }
+
+
+/* Final pointer-tilt and portrait-animation conflict fix — 2026-10-27 */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .portfolio-root .project-grid > .project-card:hover {
+    transform: perspective(920px) rotateX(var(--card-tilt-y,0deg)) rotateY(var(--card-tilt-x,0deg)) translateY(-4px);
+  }
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-info {
+    transform: translateZ(7px);
+  }
+}
+@media (hover:none), (pointer:coarse), (prefers-reduced-motion:reduce) {
+  .portfolio-root .project-grid > .project-card:hover {
+    transform: translateY(-2px);
+  }
+}
+/* Keep the portrait's orbit/floating animations active on hover; only prevent scale-based zoom. */
+.hero-portrait:hover .portrait-photo-frame {
+  animation: portrait-float-orbit 8s ease-in-out infinite, portrait-halo-breathe 5.8s ease-in-out infinite !important;
+  transform-origin: center center !important;
+}
+.hero-portrait:hover .portrait-photo-frame img {
+  animation: portrait-photo-pan 15s ease-in-out infinite alternate !important;
+  transform-origin: center center !important;
+  object-fit: cover !important;
+}
+@media (prefers-reduced-motion:reduce) {
+  .hero-portrait:hover .portrait-photo-frame,
+  .hero-portrait:hover .portrait-photo-frame img {
+    animation: none !important;
+  }
+}
