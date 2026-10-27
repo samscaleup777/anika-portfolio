@@ -1171,3 +1171,48 @@ html[data-time="day"] .hero-text,html[data-time="day"] .section-intro,html[data-
  .portrait-photo-frame,.portrait-photo-frame img,.ambient-particle-stream,.ambient-particle-stream i,.ambient-neural-line,.ambient-micro-orbit,.ambient-hex-cluster,.ambient-data-ribbon{animation:none!important}
  .portrait-photo-frame img{transform:none!important}
 }
+
+
+/* Larger, balanced project gallery with original UI previews for all four live projects. */
+.portfolio-root .project-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(16px,2vw,24px)}
+.portfolio-root .project-card{display:flex;flex-direction:column;height:100%}
+.portfolio-root .project-art{height:270px;min-height:250px;padding:clamp(16px,2vw,24px)}
+.portfolio-root .project-info{display:flex;flex:1;flex-direction:column;align-items:flex-start}
+.portfolio-root .project-info p{line-height:1.65}
+.portfolio-root .project-live-link{margin-top:auto}
+.project-art.sky{background:radial-gradient(at 72% 0,#83cfff35,transparent 60%),#152133}
+.project-art.coral{background:radial-gradient(at 74% 0,#ffb77b38,transparent 62%),#29201f}
+.devstack-preview{transform:rotate(-1deg)}
+.devstack-window{display:grid;grid-template-columns:68px minmax(0,1fr);min-height:170px;background:linear-gradient(135deg,#101624,#1a2132)}
+.devstack-sidebar{display:flex;flex-direction:column;gap:12px;padding:12px 9px;border-right:1px solid #ffffff14;background:#0e1320;color:#8793aa;font-size:6px;letter-spacing:.1em}
+.devstack-sidebar b{display:grid;place-items:center;width:23px;height:23px;border:1px solid #c4ff7655;border-radius:7px;color:#c4ff76;font-size:8px}
+.devstack-main{min-width:0;padding:14px 15px}
+.devstack-main>small{color:#8d9ab5;font-size:7px;letter-spacing:.13em}
+.devstack-main h3{margin:9px 0 13px;font-size:clamp(19px,2.3vw,27px);line-height:1.06;letter-spacing:-.05em}
+.devstack-main h3 em{color:var(--lime);font-style:normal}
+.tech-pill-row{display:flex;flex-wrap:wrap;gap:5px}
+.tech-pill-row span{padding:4px 6px;border:1px solid #ffffff1a;border-radius:5px;color:#c8d0de;font-size:7px}
+.devstack-bars{display:flex;gap:5px;margin-top:14px}
+.devstack-bars i{flex:1;height:4px;border-radius:99px;background:linear-gradient(90deg,#c4ff76aa,#b49aff55)}
+.fitlog-preview{transform:rotate(1deg)}
+.fitlog-window{padding:14px;background:linear-gradient(135deg,#171b24,#26232b);color:#f7f0e8}
+.fitlog-heading{position:relative}
+.fitlog-heading>small{color:#c7a989;font-size:7px;letter-spacing:.14em}
+.fitlog-heading h3{margin:6px 0 13px;font-size:clamp(19px,2.2vw,26px);line-height:1.05;letter-spacing:-.045em}
+.fitlog-heading h3 em{color:#f3bd88;font-style:normal}
+.fitlog-avatar{position:absolute;top:1px;right:0;display:grid;place-items:center;width:27px;height:27px;border:1px solid #f3bd8866;border-radius:9px;color:#f3bd88;font-weight:700}
+.fitlog-stats,.fitlog-exercises{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+.fitlog-stats>div,.fitlog-exercises>span{display:grid;gap:4px;min-width:0;padding:7px;border:1px solid #ffffff12;border-radius:6px;background:#ffffff08}
+.fitlog-stats small,.fitlog-exercises small{color:#bcb4ad;font-size:6px}
+.fitlog-stats b,.fitlog-exercises b{overflow-wrap:anywhere;font-size:7px}
+.fitlog-exercises{margin-top:6px}
+.fitlog-exercises i{color:#f3bd88;font-size:6px;font-style:normal}
+/* Avoid expensive blur compositing and retained layers on every off-screen section. */
+.reveal-on-scroll{filter:none;will-change:auto;transition:opacity .5s ease,transform .55s cubic-bezier(.2,.7,.2,1)}
+.reveal-on-scroll.is-visible{filter:none}
+@media(max-width:700px){
+ .portfolio-root .project-grid{grid-template-columns:minmax(0,1fr)}
+ .portfolio-root .project-art{height:245px;min-height:245px;padding:16px}
+ .devstack-main{padding:13px 11px}
+ .devstack-sidebar{padding:11px 7px;gap:10px}
+}
