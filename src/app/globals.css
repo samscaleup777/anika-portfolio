@@ -1499,3 +1499,21 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
     animation: none !important;
   }
 }
+
+
+/* Faster, deeper pointer-follow tilt: animate with JS interpolation instead of CSS lag. */
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .portfolio-root .project-grid > .project-card.is-tilting {
+    transition: border-color .22s ease, box-shadow .22s ease !important;
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  .portfolio-root .project-grid > .project-card.is-tilting > .project-art,
+  .portfolio-root .project-grid > .project-card.is-tilting > .project-info {
+    transform: translateZ(9px);
+  }
+  .portfolio-root .project-grid > .project-card.is-tilting:before {
+    transition: opacity .18s ease;
+    opacity: 1;
+  }
+}
