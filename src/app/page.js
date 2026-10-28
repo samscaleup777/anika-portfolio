@@ -475,7 +475,7 @@ export default function HomePage() {
           card.style.setProperty("--card-tilt-y", `${tilt.currentY.toFixed(2)}deg`);
           card.style.setProperty(
             "transform",
-            `perspective(660px) rotateX(${tilt.currentY.toFixed(2)}deg) rotateY(${tilt.currentX.toFixed(2)}deg) rotateZ(${tilt.currentRoll.toFixed(2)}deg) translateY(${tilt.inside ? -6 : 0}px) scale(${tilt.inside ? 1.012 : 1})`,
+            `perspective(820px) rotateX(${tilt.currentY.toFixed(2)}deg) rotateY(${tilt.currentX.toFixed(2)}deg) rotateZ(${tilt.currentRoll.toFixed(2)}deg) translateY(${tilt.inside ? -3 : 0}px) scale(${tilt.inside ? 1.006 : 1})`,
             "important"
           );
           if (!settled) {
@@ -504,9 +504,10 @@ export default function HomePage() {
           const x = Math.max(-1, Math.min(1, (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2)));
           const y = Math.max(-1, Math.min(1, (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2)));
           const isTouch = event.pointerType === "touch" || tilt.touchMode;
-          tilt.targetX = x * (isTouch ? 8 : 15);
-          tilt.targetY = y * (isTouch ? -8 : -13);
-          tilt.targetRoll = x * (isTouch ? 0.65 : 1.35);
+          // A restrained tilt feels premium and avoids overwhelming the card content.
+          tilt.targetX = x * (isTouch ? 4.5 : 8.5);
+          tilt.targetY = y * (isTouch ? -4.5 : -7.5);
+          tilt.targetRoll = x * (isTouch ? 0.25 : 0.6);
           card.style.setProperty("--card-light-x", `${((x + 1) / 2) * 100}%`);
           card.style.setProperty("--card-light-y", `${((y + 1) / 2) * 100}%`);
           queueTilt();
