@@ -1517,3 +1517,193 @@ html,body,.portfolio-root,.portfolio-root *{font-family:'Inter',ui-sans-serif,sy
     opacity: 1;
   }
 }
+
+
+/* Final mobile layout fit and touch-tilt tuning — 2026-10-28 */
+html, body {
+  max-width: 100%;
+}
+.portfolio-root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+.portfolio-root .project-grid > .project-card {
+  min-width: 0;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+}
+@media (max-width: 700px) {
+  .portfolio-root .container {
+    width: calc(100% - 32px);
+    max-width: none;
+  }
+  .portfolio-root .section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+  .portfolio-root .section-heading {
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+  .portfolio-root .section-heading h2 {
+    font-size: clamp(36px, 9.5vw, 54px);
+    line-height: 1.02;
+    overflow-wrap: anywhere;
+  }
+  .portfolio-root .section-intro {
+    max-width: 100%;
+    font-size: 14px;
+    line-height: 1.65;
+  }
+  .portfolio-root .filters {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 2px 1px 10px;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+  .portfolio-root .filters .filter {
+    flex: 0 0 auto;
+    max-width: 82vw;
+    white-space: nowrap;
+  }
+  .portfolio-root .project-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px;
+    width: 100%;
+  }
+  .portfolio-root .project-grid > .project-card {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    border-radius: 17px;
+    transform-style: preserve-3d;
+    -webkit-tap-highlight-color: transparent;
+  }
+  /* Keep the project preview visible on touch devices; hover is not a mobile interaction. */
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 190px;
+    min-height: 190px;
+    padding: 8px;
+  }
+  .portfolio-root .project-grid > .project-card > .project-info {
+    padding: 16px;
+  }
+  .portfolio-root .project-info h3 {
+    font-size: clamp(17px, 5vw, 21px);
+    overflow-wrap: anywhere;
+  }
+  .portfolio-root .project-info p {
+    font-size: 13px;
+    line-height: 1.62;
+    display: block;
+    overflow: visible;
+  }
+  .portfolio-root .project-stack {
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .portfolio-root .project-info .project-sound-button {
+    min-height: 34px;
+    font-size: 11px;
+  }
+  .portfolio-root .project-live-link {
+    min-height: 38px;
+    display: inline-flex;
+    align-items: center;
+  }
+  /* Touch drag is handled by passive JS listeners; normal page scrolling remains available. */
+  .portfolio-root .project-grid > .project-card {
+    touch-action: pan-y pinch-zoom;
+    transition: border-color .22s ease, box-shadow .22s ease;
+  }
+  .portfolio-root .project-grid > .project-card.is-tilting {
+    transition: border-color .18s ease, box-shadow .18s ease !important;
+    will-change: transform;
+  }
+  .portfolio-root .project-grid > .project-card.is-tilting > .project-art,
+  .portfolio-root .project-grid > .project-card.is-tilting > .project-info {
+    transform: translateZ(5px);
+  }
+  .portfolio-root .hero-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .portfolio-root .hero-copy,
+  .portfolio-root .hero-portrait {
+    min-width: 0;
+    width: 100%;
+  }
+  .portfolio-root .hero-copy h1 {
+    font-size: clamp(45px, 11.8vw, 70px);
+    overflow-wrap: anywhere;
+  }
+  .portfolio-root .stack-strip > div {
+    flex-wrap: wrap;
+  }
+  .portfolio-root .live-weather {
+    grid-template-columns: 38px minmax(0, 1fr) auto;
+    width: 100%;
+    min-width: 0;
+  }
+  .portfolio-root .weather-copy,
+  .portfolio-root .weather-temperature,
+  .portfolio-root .weather-clock {
+    min-width: 0;
+  }
+  .portfolio-root .about-grid,
+  .portfolio-root .contact-card-expanded {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .portfolio-root .social-grid,
+  .portfolio-root .tech-stack-grid,
+  .portfolio-root .process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 420px) {
+  .portfolio-root .container {
+    width: calc(100% - 26px);
+  }
+  .portfolio-root .site-header {
+    padding-inline: 13px;
+  }
+  .portfolio-root .brand b {
+    font-size: 14px;
+  }
+  .portfolio-root .brand small {
+    font-size: 8px;
+  }
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 168px;
+    min-height: 168px;
+  }
+  .portfolio-root .project-grid > .project-card > .project-info {
+    padding: 14px;
+  }
+  .portfolio-root .project-info p {
+    font-size: 12px;
+  }
+  .portfolio-root .social-grid,
+  .portfolio-root .tech-stack-grid,
+  .portfolio-root .process-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .portfolio-root .actions {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .portfolio-root .actions .button {
+    min-width: 0;
+  }
+}
