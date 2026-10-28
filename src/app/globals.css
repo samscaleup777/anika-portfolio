@@ -1786,3 +1786,73 @@ html, body {
     min-height: 188px !important;
   }
 }
+
+
+/* Slightly smaller project cards and gentler visual balance — 2026-10-28 */
+.portfolio-root .project-grid {
+  gap: clamp(14px, 1.6vw, 20px);
+}
+.portfolio-root .project-grid > .project-card > .project-art,
+.portfolio-root .project-grid > .project-card:hover > .project-art,
+.portfolio-root .project-grid > .project-card:focus-within > .project-art {
+  height: clamp(195px, 20vw, 238px) !important;
+  min-height: clamp(195px, 20vw, 238px) !important;
+  padding: 9px;
+}
+.portfolio-root .project-grid > .project-card > .project-info {
+  padding: 15px 17px 17px;
+}
+.portfolio-root .project-info h3 {
+  font-size: clamp(16px, 1.35vw, 19px);
+  margin-bottom: 7px;
+}
+.portfolio-root .project-info p {
+  font-size: 12px;
+  line-height: 1.55;
+  margin-bottom: 10px;
+}
+.portfolio-root .project-stack {
+  margin-bottom: 8px;
+}
+.portfolio-root .project-info .project-sound-button {
+  min-height: 28px;
+  margin-bottom: 9px;
+  padding: 5px 9px;
+}
+@media (max-width: 1000px) {
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 198px !important;
+    min-height: 198px !important;
+  }
+  .portfolio-root .project-grid > .project-card > .project-info {
+    padding: 14px 15px 15px;
+  }
+}
+@media (max-width: 700px) {
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: clamp(172px, 48vw, 200px) !important;
+    min-height: clamp(172px, 48vw, 200px) !important;
+    padding: 8px;
+  }
+  .portfolio-root .project-grid > .project-card > .project-info {
+    padding: 14px 15px 15px;
+  }
+  .portfolio-root .project-info h3 {
+    font-size: clamp(16px, 4.8vw, 19px);
+  }
+}
+@media (max-width: 420px) {
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 165px !important;
+    min-height: 165px !important;
+  }
+  .portfolio-root .project-grid > .project-card > .project-info {
+    padding: 13px;
+  }
+}
