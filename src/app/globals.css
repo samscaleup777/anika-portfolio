@@ -1707,3 +1707,82 @@ html, body {
     min-width: 0;
   }
 }
+
+
+/* Keep all four project previews fully visible; hover is reserved for tilt and lighting. */
+.portfolio-root .project-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  align-items: stretch;
+  gap: clamp(16px, 2vw, 24px);
+}
+.portfolio-root .project-grid > .project-card {
+  height: auto;
+  min-width: 0;
+  align-self: stretch;
+  overflow: visible;
+}
+.portfolio-root .project-grid > .project-card > .project-art,
+.portfolio-root .project-grid > .project-card:hover > .project-art,
+.portfolio-root .project-grid > .project-card:focus-within > .project-art {
+  height: clamp(220px, 23vw, 270px) !important;
+  min-height: clamp(220px, 23vw, 270px) !important;
+  max-height: none;
+  padding: 10px;
+  overflow: hidden;
+  transition: none !important;
+}
+.portfolio-root .project-grid > .project-card > .project-art > .project-preview-link,
+.portfolio-root .project-grid > .project-card > .project-art > .project-mock-link {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+.portfolio-root .project-grid > .project-card > .project-info {
+  min-width: 0;
+  height: auto;
+}
+.portfolio-root .project-grid > .project-card .project-preview-image {
+  object-fit: cover;
+  object-position: center top;
+}
+.portfolio-root .project-grid > .project-card:hover > .project-art,
+.portfolio-root .project-grid > .project-card:focus-within > .project-art {
+  /* Do not crop or expand the preview on hover; tilt stays independent. */
+  height: clamp(220px, 23vw, 270px) !important;
+}
+@media (max-width: 1000px) {
+  .portfolio-root .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 220px !important;
+    min-height: 220px !important;
+  }
+}
+@media (max-width: 700px) {
+  .portfolio-root .project-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 16px;
+  }
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: clamp(190px, 54vw, 230px) !important;
+    min-height: clamp(190px, 54vw, 230px) !important;
+    padding: 8px;
+  }
+  .portfolio-root .project-grid > .project-card .project-preview-link,
+  .portfolio-root .project-grid > .project-card .project-mock-link {
+    inset: 8px !important;
+  }
+}
+@media (max-width: 420px) {
+  .portfolio-root .project-grid > .project-card > .project-art,
+  .portfolio-root .project-grid > .project-card:hover > .project-art,
+  .portfolio-root .project-grid > .project-card:focus-within > .project-art {
+    height: 188px !important;
+    min-height: 188px !important;
+  }
+}
