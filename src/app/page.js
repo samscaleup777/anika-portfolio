@@ -450,16 +450,15 @@ export default function HomePage() {
 
     const tiltCards = [];
     const magneticButtons = [];
-    if (finePointer && !reduceMotion) {
+    if (!reduceMotion) {
       root.querySelectorAll(".project-card").forEach((card) => {
         const tilt = {
           currentX: 0, currentY: 0, currentRoll: 0,
           targetX: 0, targetY: 0, targetRoll: 0,
-          inside: false, frame: 0, rect: null
+          inside: false, touchMode: false, touchScrollY: 0, frame: 0, rect: null
         };
         const animateTilt = () => {
           tilt.frame = 0;
-          // Higher follow factor makes the card react almost immediately while keeping a spring-like finish.
           const follow = tilt.inside ? 0.64 : 0.24;
           tilt.currentX += (tilt.targetX - tilt.currentX) * follow;
           tilt.currentY += (tilt.targetY - tilt.currentY) * follow;
@@ -492,7 +491,6 @@ export default function HomePage() {
           if (!tilt.frame) tilt.frame = window.requestAnimationFrame(animateTilt);
         };
         const onEnter = () => {
-          // Cache the un-tilted box once; measuring the rotated box on every move causes feedback and lag.
           tilt.rect = card.getBoundingClientRect();
           tilt.inside = true;
           card.classList.add("is-tilting");
@@ -500,20 +498,21 @@ export default function HomePage() {
           queueTilt();
         };
         const onMove = (event) => {
-          if (!tilt.inside || !tilt.rect) onEnter();
+          if ((!tilt.inside || !tilt.rect) && !tilt.touchMode) onEnter();
           const rect = tilt.rect;
           if (!rect?.width || !rect?.height) return;
           const x = Math.max(-1, Math.min(1, (event.clientX - (rect.left + rect.width / 2)) / (rect.width / 2)));
           const y = Math.max(-1, Math.min(1, (event.clientY - (rect.top + rect.height / 2)) / (rect.height / 2)));
-          // Cursor movement drives a stronger 3D lean (up to 15° horizontal / 13° vertical).
-          tilt.targetX = x * 15;
-          tilt.targetY = y * -13;
-          tilt.targetRoll = x * 1.35;
+          const isTouch = event.pointerType === "touch" || tilt.touchMode;
+          tilt.targetX = x * (isTouch ? 8 : 15);
+          tilt.targetY = y * (isTouch ? -8 : -13);
+          tilt.targetRoll = x * (isTouch ? 0.65 : 1.35);
           card.style.setProperty("--card-light-x", `${((x + 1) / 2) * 100}%`);
           card.style.setProperty("--card-light-y", `${((y + 1) / 2) * 100}%`);
           queueTilt();
         };
         const onLeave = () => {
+          if (tilt.touchMode) return;
           tilt.inside = false;
           tilt.targetX = 0;
           tilt.targetY = 0;
@@ -522,10 +521,34 @@ export default function HomePage() {
           card.style.setProperty("--card-light-y", "50%");
           queueTilt();
         };
+        // Touchscreen support: dragging a finger across a card steers the 3D tilt,
+        // while passive listeners preserve the page's normal vertical scrolling.
+        const onTouchStart = (event) => {
+          const point = event.touches?.[0];
+          if (!point) return;
+          tilt.touchMode = true;
+          tilt.touchScrollY = window.scrollY;
+          onEnter();
+          onMove({ clientX: point.clientX, clientY: point.clientY, pointerType: "touch" });
+        };
+        const onTouchMove = (event) => {
+          const point = event.touches?.[0];
+          if (!point || !tilt.touchMode || !tilt.rect) return;
+          const scrollDelta = window.scrollY - tilt.touchScrollY;
+          if (scrollDelta) tilt.rect = { ...tilt.rect, top: tilt.rect.top - scrollDelta };
+          tilt.touchScrollY = window.scrollY;
+          onMove({ clientX: point.clientX, clientY: point.clientY, pointerType: "touch" });
+        };
+        const onTouchEnd = () => {
+          if (!tilt.touchMode) return;
+          tilt.touchMode = false;
+          onLeave();
+        };
         const stopTilt = () => {
           if (tilt.frame) window.cancelAnimationFrame(tilt.frame);
           tilt.frame = 0;
           tilt.inside = false;
+          tilt.touchMode = false;
           card.classList.remove("is-tilting");
           card.style.removeProperty("transform");
           card.style.removeProperty("z-index");
@@ -533,23 +556,28 @@ export default function HomePage() {
         card.addEventListener("pointerenter", onEnter, { passive: true });
         card.addEventListener("pointermove", onMove, { passive: true });
         card.addEventListener("pointerleave", onLeave);
-        tiltCards.push([card, onMove, onLeave, stopTilt, onEnter]);
+        card.addEventListener("pointercancel", onLeave);
+        card.addEventListener("touchstart", onTouchStart, { passive: true });
+        card.addEventListener("touchmove", onTouchMove, { passive: true });
+        card.addEventListener("touchend", onTouchEnd, { passive: true });
+        card.addEventListener("touchcancel", onTouchEnd, { passive: true });
+        tiltCards.push([card, onMove, onLeave, stopTilt, onEnter, onTouchStart, onTouchMove, onTouchEnd]);
       });
-      if (!reduceMotion) {
-      root.querySelectorAll(".button").forEach((button) => {
-        const onMove = (event) => {
-          const rect = button.getBoundingClientRect();
-          button.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .12}px`);
-          button.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .12}px`);
-        };
-        const onLeave = () => {
-          button.style.setProperty("--magnet-x", "0px");
-          button.style.setProperty("--magnet-y", "0px");
-        };
-        button.addEventListener("pointermove", onMove, { passive: true });
-        button.addEventListener("pointerleave", onLeave);
-        magneticButtons.push([button, onMove, onLeave]);
-      });
+      if (finePointer) {
+        root.querySelectorAll(".button").forEach((button) => {
+          const onMove = (event) => {
+            const rect = button.getBoundingClientRect();
+            button.style.setProperty("--magnet-x", `${(event.clientX - rect.left - rect.width / 2) * .12}px`);
+            button.style.setProperty("--magnet-y", `${(event.clientY - rect.top - rect.height / 2) * .12}px`);
+          };
+          const onLeave = () => {
+            button.style.setProperty("--magnet-x", "0px");
+            button.style.setProperty("--magnet-y", "0px");
+          };
+          button.addEventListener("pointermove", onMove, { passive: true });
+          button.addEventListener("pointerleave", onLeave);
+          magneticButtons.push([button, onMove, onLeave]);
+        });
       }
     }
     const closeMenu = () => {
@@ -789,10 +817,15 @@ export default function HomePage() {
       window.removeEventListener("scroll", updateProgress);
       window.removeEventListener("resize", updateProgress);
       if (finePointer && !reduceMotion) root.removeEventListener("pointermove", handlePointerMove);
-      tiltCards.forEach(([card, onMove, onLeave, stopTilt, onEnter]) => {
+      tiltCards.forEach(([card, onMove, onLeave, stopTilt, onEnter, onTouchStart, onTouchMove, onTouchEnd]) => {
         card.removeEventListener("pointerenter", onEnter);
         card.removeEventListener("pointermove", onMove);
         card.removeEventListener("pointerleave", onLeave);
+        card.removeEventListener("pointercancel", onLeave);
+        card.removeEventListener("touchstart", onTouchStart);
+        card.removeEventListener("touchmove", onTouchMove);
+        card.removeEventListener("touchend", onTouchEnd);
+        card.removeEventListener("touchcancel", onTouchEnd);
         stopTilt?.();
       });
       magneticButtons.forEach(([button, onMove, onLeave]) => {
